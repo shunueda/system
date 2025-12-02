@@ -160,10 +160,14 @@
                           enable = true;
                         };
                       };
+                      fonts.fontconfig.enable = true;
                       home = {
                         username = user;
                         stateVersion = "25.11";
-                        packages = with pkgs; [ mergiraf ];
+                        packages = with pkgs; [
+                          mergiraf
+                          jetbrains-mono
+                        ];
                       };
                     };
                   };
