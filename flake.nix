@@ -133,6 +133,9 @@
                             chmod +x $out
                           '';
                         };
+                        gh = {
+                          enable = true;
+                        };
                         emacs = {
                           enable = true;
                           package = pkgs.emacs-pgtk;
@@ -149,7 +152,12 @@
                   { pkgs, ... }:
                   {
                     imports = [ self.darwinModules.base ];
-                    home-manager.users.${user}.home.packages = with pkgs; [ discord ];
+                    home-manager.users.${user} = {
+                      home.packages = with pkgs; [ ];
+                      programs.discord = {
+                        enable = true;
+                      };
+                    };
                   };
                 work =
                   { pkgs, ... }:
@@ -158,7 +166,9 @@
                       self.darwinModules.base
                       self.darwinModules.linux-builder
                     ];
-                    home-manager.users.${user}.home.packages = with pkgs; [ ];
+                    home-manager.users.${user} = {
+                      home.packages = with pkgs; [ ];
+                    };
                   };
                 linux-builder =
                   { lib }:
