@@ -123,6 +123,16 @@
                             init = {
                               defaultBranch = "master";
                             };
+                            diff.algorithm = "histogram";
+                            rebase = {
+                              autosquash = true;
+                              autostash = true;
+                              stat = true;
+                            };
+                            rerere = {
+                              autoupdate = true;
+                              enabled = true;
+                            };
                             merge = {
                               conflictStyle = "diff3";
                               mergiraf = {
@@ -134,7 +144,7 @@
                             };
                           };
                           attributes = [ "* merge=mergiraf" ];
-                          hooks.pre-commit = pkgs.runCommand "nocommit-pre-commit" { } ''
+                          hooks.pre-commit = pkgs.runCommand "pre-commit" { } ''
                             cat ${nocommit}/pre-commit > $out
                             chmod +x $out
                           '';
@@ -146,7 +156,7 @@
                           enable = true;
                           package = pkgs.emacs-pgtk;
                         };
-                        qutebrowser = {
+                        firefox = {
                           enable = true;
                         };
                       };
