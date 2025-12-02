@@ -127,7 +127,17 @@
                             init = {
                               defaultBranch = "master";
                             };
+                            merge = {
+                              conflictStyle = "diff3";
+                              mergiraf = {
+                                name = "mergiraf";
+                                driver = ''
+                                  mergiraf merge --git %O %A %B -s %S -x %X -y %Y -p %P -l %L
+                                '';
+                              };
+                            };
                           };
+                          attributes = [ "* merge=mergiraf" ];
                           hooks.pre-commit = pkgs.runCommand "nocommit-pre-commit" { } ''
                             cat ${nocommit}/pre-commit > $out
                             chmod +x $out
@@ -144,7 +154,7 @@
                       home = {
                         username = user;
                         stateVersion = "25.11";
-                        packages = with pkgs; [ ];
+                        packages = with pkgs; [ mergiraf ];
                       };
                     };
                   };
