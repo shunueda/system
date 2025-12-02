@@ -143,6 +143,22 @@
         "type": "github"
       }
     },
+    "nocommit": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1758757300,
+        "narHash": "sha256-q0wEBzcOjj0wB1OUxpkde8OOw0e3qqDsK4KTOuWQYFM=",
+        "owner": "nobssoftware",
+        "repo": "nocommit",
+        "rev": "5c3cf9519fe40b80b0954d254085b67b532a5dc3",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nobssoftware",
+        "repo": "nocommit",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
         "flake-parts": "flake-parts",
@@ -151,6 +167,7 @@
         "nix-darwin": "nix-darwin",
         "nix-index-database": "nix-index-database",
         "nixpkgs": "nixpkgs",
+        "nocommit": "nocommit",
         "treefmt-nix": "treefmt-nix"
       }
     },

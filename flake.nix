@@ -19,6 +19,10 @@
       flake = false;
     };
     treefmt-nix.url = "github:numtide/treefmt-nix";
+    nocommit = {
+      url = "github:nobssoftware/nocommit";
+      flake = false;
+    };
   };
   outputs =
     {
@@ -28,6 +32,7 @@
       home-manager,
       flake-parts,
       flakeregistry,
+      nocommit,
       ...
     }@inputs:
     let
@@ -123,16 +128,10 @@
                               defaultBranch = "master";
                             };
                           };
-                          hooks.pre-commit =
-                            let
-                              nocommit = pkgs.fetchFromGitHub {
-                                owner = "nobssoftware";
-                                repo = "nocommit";
-                                rev = "f42591483e6b4293ac3f077a9c151d1808baeae9";
-                                sha256 = "sha256-q0wEBzcOjj0wB1OUxpkde8OOw0e3qqDsK4KTOuWQYFM=";
-                              };
-                            in
-                            "${nocommit}/pre-commit";
+                          hooks.pre-commit = pkgs.runCommand "nocommit-pre-commit" { } ''
+                            cat ${nocommit}/pre-commit > $out
+                            chmod +x $out
+                          '';
                         };
                         emacs = {
                           enable = true;
