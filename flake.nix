@@ -120,10 +120,6 @@
                         git = {
                           enable = true;
                           settings = {
-                            user = {
-                              name = "shunueda";
-                              email = "me@shu.nu";
-                            };
                             init = {
                               defaultBranch = "master";
                             };
