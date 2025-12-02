@@ -150,6 +150,9 @@
                           enable = true;
                           package = pkgs.emacs-pgtk;
                         };
+                        qutebrowser = {
+                          enable = true;
+                        };
                       };
                       home = {
                         username = user;
