@@ -1,10 +1,5 @@
 ;; -*- lexical-binding: t; -*-
 
-;; Heavily inspired by Https://github.com/daviwil/dotfiles/blob/master/emacs/init.el
-;; ...until I know what I'm doing
-
-;;; ----- Basic Configuration -----
-
 ;; Core settings
 (setq ;; Yes, this is Emacs
       inhibit-startup-message t
@@ -94,3 +89,35 @@
 
         ;; Add more `completion-styles' to improve candidate selection.
         completion-styles '(basic partial-completion substring initials))
+
+;; auto-mode-alist entries
+;; TODO: can we automate this?
+(add-to-list 'auto-mode-alist '("\\.ts\\'" . typescript-ts-mode))
+(add-to-list 'auto-mode-alist '("\\.tsx\\'" . tsx-ts-mode))
+(add-to-list 'auto-mode-alist '("\\.nix\\'" . nix-ts-mode))
+
+;; TODO: LSP & completion
+;; Eglot
+(add-hook 'typescript-ts-mode-hook #'eglot-ensure)
+(add-hook 'tsx-ts-mode-hook #'eglot-ensure)
+
+;; Vertico
+(use-package vertico
+  :init
+  (vertico-mode))
+
+;; Corfu
+(use-package corfu
+  :custom
+  (corfu-auto t)
+  (corfu-auto-prefix 1)
+  (corfu-cycle t)
+  :init
+  (global-corfu-mode))
+
+(setq completion-category-overrides '((eglot (styles . (orderless)))))
+
+(use-package corfu-popupinfo
+  :after corfu
+  :init
+  (corfu-popupinfo-mode))

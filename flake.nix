@@ -100,10 +100,6 @@
                     };
                     security.pam.services.sudo_local.touchIdAuth = true;
                     home-manager.users.${user} = {
-                      home.file.".emacs.d" = {
-                        source = ./emacs.d;
-                        recursive = true;
-                      };
                       programs = {
                         home-manager.enable = true;
                         zsh = {
@@ -154,7 +150,20 @@
                         };
                         emacs = {
                           enable = true;
-                          package = pkgs.emacs-pgtk;
+                          package = pkgs.emacs;
+                          extraPackages =
+                            epkgs:
+                            with epkgs;
+                            [
+                              treesit-grammars.with-all-grammars
+                              nix-ts-mode
+                              corfu
+                              vertico
+                            ]
+                            ++ (with pkgs; [
+                              typescript
+                              typescript-language-server
+                            ]);
                         };
                         firefox = {
                           enable = true;
@@ -168,6 +177,12 @@
                           mergiraf
                           jetbrains-mono
                         ];
+                        file = {
+                          ".emacs.d" = {
+                            source = ./emacs.d;
+                            recursive = true;
+                          };
+                        };
                       };
                     };
                   };
