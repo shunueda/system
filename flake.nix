@@ -159,6 +159,7 @@
                               nix-ts-mode
                               corfu
                               vertico
+                              git-gutter
                             ]
                             ++ (with pkgs; [
                               typescript
