@@ -100,6 +100,10 @@
 ;; Eglot
 (add-hook 'typescript-ts-mode-hook #'eglot-ensure)
 (add-hook 'tsx-ts-mode-hook #'eglot-ensure)
+(add-hook 'nix-ts-mode-hook #'eglot-ensure)
+(with-eval-after-load 'eglot
+  (add-to-list 'eglot-server-programs
+               '(nix-ts-mode . ("nixd"))))
 
 ;; Vertico
 (use-package vertico

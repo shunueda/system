@@ -164,6 +164,7 @@
                             ++ (with pkgs; [
                               typescript
                               typescript-language-server
+                              nixd
                             ]);
                         };
                         firefox = {
@@ -213,6 +214,7 @@
                   { lib }:
                   {
                     nix.linux-builder = {
+
                       enable = true;
                       ephemeral = true;
                       systems = [
