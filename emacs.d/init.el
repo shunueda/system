@@ -10,6 +10,9 @@
       ;; No backup files, please
       make-backup-files nil
 
+      ;; Autosave every 1 sec
+      setq auto-save-visited-interval 1
+
       ;; Make it easy to cycle through previous items in the mark ring
       set-mark-command-repeat-pop t
 
@@ -45,6 +48,7 @@
 (global-visual-line-mode 1)    ;; Visually wrap long lines in all buffers
 (global-auto-revert-mode 1)    ;; Refresh buffers with changed local files
 (global-display-line-numbers-mode t) ;; Display line numbers
+(auto-save-visited-mode 1) ;; Save to original file
 
 ;; Tabs to spaces
 (setq-default indent-tabs-mode nil
