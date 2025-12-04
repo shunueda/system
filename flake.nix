@@ -160,6 +160,7 @@
                               corfu
                               vertico
                               git-gutter
+                              magit
                             ]
                             ++ (with pkgs; [
                               typescript

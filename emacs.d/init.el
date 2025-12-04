@@ -11,7 +11,7 @@
       make-backup-files nil
 
       ;; Autosave every 1 sec
-      setq auto-save-visited-interval 1
+      auto-save-visited-interval 1
 
       ;; Make it easy to cycle through previous items in the mark ring
       set-mark-command-repeat-pop t
