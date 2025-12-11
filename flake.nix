@@ -42,7 +42,7 @@
           flake = {
             darwinConfigurations = {
               personal = nix-darwin.lib.darwinSystem { modules = [ self.darwinModules.personal ]; };
-              work = nix-darwin.lib.darwinSystem { modules = [ self.darwinModules.work ]; };
+              anterior = nix-darwin.lib.darwinSystem { modules = [ self.darwinModules.anterior ]; };
             };
             darwinModules =
               let
@@ -114,6 +114,10 @@
                           settings = {
                             init = {
                               defaultBranch = "master";
+                            };
+                            user = {
+                              name = "Shun Ueda";
+                              email = "me@shu.nu";
                             };
                             diff.algorithm = "histogram";
                             rebase = {
@@ -196,14 +200,13 @@
                   {
                     imports = [ self.darwinModules.base ];
                     home-manager.users.${user} = {
-                      home.packages = with pkgs; [
-                      ];
+                      home.packages = with pkgs; [ ];
                       programs.discord = {
                         enable = true;
                       };
                     };
                   };
-                work =
+                anterior =
                   { pkgs, ... }:
                   {
                     imports = [

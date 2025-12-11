@@ -33,7 +33,7 @@
       native-comp-async-report-warnings-errors nil)
 
 ;; Font
-(set-frame-font "JetBrains Mono 12")
+(set-frame-font "JetBrains Mono 13")
 
 ;; Core modes
 (repeat-mode 1)                ;; Enable repeating key maps
