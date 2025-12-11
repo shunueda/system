@@ -148,6 +148,9 @@
                         gh = {
                           enable = true;
                         };
+                        docker-cli = {
+                          enable = true;
+                        };
                         emacs = {
                           enable = true;
                           package = pkgs.emacs;
@@ -180,6 +183,7 @@
                         packages = with pkgs; [
                           mergiraf
                           jetbrains-mono
+                          orbstack
                         ];
                         file = {
                           ".emacs.d" = {
@@ -195,7 +199,9 @@
                   {
                     imports = [ self.darwinModules.base ];
                     home-manager.users.${user} = {
-                      home.packages = with pkgs; [ ];
+                      home.packages = with pkgs; [
+                        modrinth-app
+                      ];
                       programs.discord = {
                         enable = true;
                       };
