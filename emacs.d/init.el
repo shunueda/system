@@ -146,3 +146,6 @@
   :config
   (setq undo-tree-auto-save-history nil)
   (global-undo-tree-mode))
+
+(use-package vterm
+  :ensure t)

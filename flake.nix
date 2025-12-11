@@ -88,10 +88,6 @@
                         finder = {
                           _FXShowPosixPathInTitle = false;
                         };
-                        trackpad = {
-                          Clicking = true;
-                          TrackpadThreeFingerDrag = true;
-                        };
                       };
                       keyboard = {
                         enableKeyMapping = true;
@@ -165,6 +161,7 @@
                               treesit-grammars.with-all-grammars
                               undo-tree
                               vertico
+                              vterm
                             ]
                             ++ (with pkgs; [
                               typescript
