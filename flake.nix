@@ -155,12 +155,13 @@
                             epkgs:
                             with epkgs;
                             [
-                              treesit-grammars.with-all-grammars
-                              nix-ts-mode
                               corfu
-                              vertico
                               git-gutter
                               magit
+                              nix-ts-mode
+                              treesit-grammars.with-all-grammars
+                              undo-tree
+                              vertico
                             ]
                             ++ (with pkgs; [
                               typescript

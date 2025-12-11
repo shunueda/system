@@ -1,13 +1,14 @@
 ;; -*- lexical-binding: t; -*-
 
 ;; Core settings
-(setq ;; Yes, this is Emacs
+(setq
+      ;; Don't show the startup message
       inhibit-startup-message t
 
       ;; Instruct auto-save-mode to save to the current file, not a backup file
       auto-save-default nil
 
-      ;; No backup files, please
+      ;; No backup files
       make-backup-files nil
 
       ;; Autosave every 1 sec
@@ -32,7 +33,7 @@
       native-comp-async-report-warnings-errors nil)
 
 ;; Font
-(set-frame-font "JetBrains Mono 14")
+(set-frame-font "JetBrains Mono 12")
 
 ;; Core modes
 (repeat-mode 1)                ;; Enable repeating key maps
@@ -95,12 +96,10 @@
         completion-styles '(basic partial-completion substring initials))
 
 ;; auto-mode-alist entries
-;; TODO: can we automate this?
 (add-to-list 'auto-mode-alist '("\\.ts\\'" . typescript-ts-mode))
 (add-to-list 'auto-mode-alist '("\\.tsx\\'" . tsx-ts-mode))
 (add-to-list 'auto-mode-alist '("\\.nix\\'" . nix-ts-mode))
 
-;; TODO: LSP & completion
 ;; Eglot
 (add-hook 'typescript-ts-mode-hook #'eglot-ensure)
 (add-hook 'tsx-ts-mode-hook #'eglot-ensure)
@@ -108,6 +107,7 @@
 (with-eval-after-load 'eglot
   (add-to-list 'eglot-server-programs
                '(nix-ts-mode . ("nixd"))))
+(setq completion-category-overrides '((eglot (styles . (orderless)))))
 
 ;; Vertico
 (use-package vertico
@@ -123,8 +123,7 @@
   :init
   (global-corfu-mode))
 
-(setq completion-category-overrides '((eglot (styles . (orderless)))))
-
+;; Corfu popup info
 (use-package corfu-popupinfo
   :after corfu
   :init
@@ -132,15 +131,18 @@
 
 ;; Git gutter
 (global-git-gutter-mode t)
-
 (custom-set-variables
  '(git-gutter:update-interval 1))
-
 (custom-set-variables
  '(git-gutter:modified-sign " ")
  '(git-gutter:added-sign "+")
  '(git-gutter:deleted-sign "-"))
-
 (set-face-background 'git-gutter:modified "orange")
 (set-face-foreground 'git-gutter:added "green")
 (set-face-foreground 'git-gutter:deleted "red")
+
+;; Undo tree
+(use-package undo-tree
+  :config
+  (setq undo-tree-auto-save-history nil)
+  (global-undo-tree-mode))
