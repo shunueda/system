@@ -158,6 +158,7 @@
                             epkgs:
                             with epkgs;
                             [
+                              avy
                               corfu
                               git-gutter
                               magit

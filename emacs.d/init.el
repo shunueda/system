@@ -30,7 +30,15 @@
       global-auto-revert-non-file-buffers t
 
       ;; Silence compiler warnings as they can be pretty disruptive
-      native-comp-async-report-warnings-errors nil)
+      native-comp-async-report-warnings-errors nil
+
+      ;; Enable custom file
+      custom-file (concat user-emacs-directory "custom.el"))
+
+;; Local custom file if possible
+(when (file-exists-p custom-file)
+  (load custom-file))
+
 
 ;; Font
 (set-frame-font "JetBrains Mono 13")
