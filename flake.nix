@@ -200,7 +200,6 @@
                     imports = [ self.darwinModules.base ];
                     home-manager.users.${user} = {
                       home.packages = with pkgs; [
-                        modrinth-app
                       ];
                       programs.discord = {
                         enable = true;
