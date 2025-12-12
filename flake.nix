@@ -37,13 +37,12 @@
     }@inputs:
     let
       flakeAllSystems =
-        { self, ... }:
+        { self, lib, ... }:
         {
           flake = {
-            darwinConfigurations = {
-              personal = nix-darwin.lib.darwinSystem { modules = [ self.darwinModules.personal ]; };
-              anterior = nix-darwin.lib.darwinSystem { modules = [ self.darwinModules.anterior ]; };
-            };
+            darwinConfigurations = lib.mapAttrs (
+              name: module: nix-darwin.lib.darwinSystem { modules = [ module ]; }
+            ) self.darwinModules;
             darwinModules =
               let
                 user = "me";
