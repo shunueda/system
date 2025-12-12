@@ -162,15 +162,18 @@
                               git-gutter
                               magit
                               nix-ts-mode
+                              ocaml-eglot
                               treesit-grammars.with-all-grammars
+                              tuareg
                               undo-tree
                               vertico
                               vterm
                             ]
                             ++ (with pkgs; [
+                              nixd
+                              ocamlPackages.ocaml-lsp
                               typescript
                               typescript-language-server
-                              nixd
                             ]);
                         };
                         firefox = {

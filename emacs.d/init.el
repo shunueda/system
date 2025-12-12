@@ -118,6 +118,13 @@
                '(nix-ts-mode . ("nixd"))))
 (setq completion-category-overrides '((eglot (styles . (orderless)))))
 
+(use-package ocaml-eglot
+  :ensure t
+  :after tuareg
+  :hook
+  (tuareg-mode . ocaml-eglot)
+  (ocaml-eglot . eglot-ensure))
+
 ;; Vertico
 (use-package vertico
   :init
