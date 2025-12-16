@@ -7,6 +7,7 @@
 let
   cfg = config.programs.homerow;
 
+  # https://github.com/NixOS/nixpkgs/pull/470905
   homerow = pkgs.stdenvNoCC.mkDerivation (finalAttrs: {
     pname = "Homerow";
     version = "1.4.1";

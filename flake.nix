@@ -96,8 +96,7 @@
                     security.pam.services.sudo_local.touchIdAuth = true;
                     home-manager.users.${user} = {
                       imports = [
-                        # https://github.com/NixOS/nixpkgs/pull/470905
-                        ./nix/homerow.nix
+                        ./programs/homerow.nix
                       ];
                       programs = {
                         home-manager.enable = true;
@@ -113,6 +112,26 @@
                             enable = true;
                             plugins = [ ];
                             theme = "robbyrussell";
+                          };
+                        };
+                        ssh = {
+                          enable = true;
+                          enableDefaultConfig = false;
+                          matchBlocks = {
+                            "github.com" = {
+                              host = "github.com";
+                              user = "git";
+                              identityFile = "~/.ssh/id_github_ed25519";
+                              identitiesOnly = true;
+                              addKeysToAgent = "yes";
+                            };
+                            "oyasai.io" = {
+                              host = "oyasai.io";
+                              user = "oyasai";
+                              identityFile = "~/.ssh/id_oyasai_ed25519";
+                              identitiesOnly = true;
+                              addKeysToAgent = "yes";
+                            };
                           };
                         };
                         git = {
@@ -134,6 +153,11 @@
                             rerere = {
                               autoupdate = true;
                               enabled = true;
+                            };
+                            signing = {
+                              key = "~/.ssh/id_github_ed25519.pub";
+                              format = "ssh";
+                              signByDefault = true;
                             };
                           };
                           hooks.pre-commit = pkgs.runCommand "pre-commit" { } ''
@@ -189,6 +213,10 @@
                         file = {
                           ".emacs.d" = {
                             source = ./emacs.d;
+                            recursive = true;
+                          };
+                          ".ssh" = {
+                            source = ./.ssh;
                             recursive = true;
                           };
                         };
