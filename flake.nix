@@ -135,23 +135,13 @@
                               autoupdate = true;
                               enabled = true;
                             };
-                            merge = {
-                              conflictStyle = "diff3";
-                              mergiraf = {
-                                name = "mergiraf";
-                                driver = ''
-                                  mergiraf merge --git %O %A %B -s %S -x %X -y %Y -p %P -l %L
-                                '';
-                              };
-                            };
                           };
-                          attributes = [ "* merge=mergiraf" ];
                           hooks.pre-commit = pkgs.runCommand "pre-commit" { } ''
                             cat ${nocommit}/pre-commit > $out
                             chmod +x $out
                           '';
                         };
-                        gh = {
+                        mergiraf = {
                           enable = true;
                         };
                         docker-cli = {
