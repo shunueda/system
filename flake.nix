@@ -154,11 +154,6 @@
                               autoupdate = true;
                               enabled = true;
                             };
-                            signing = {
-                              key = "~/.ssh/id_github_ed25519.pub";
-                              format = "ssh";
-                              signByDefault = true;
-                            };
                           };
                           hooks.pre-commit = pkgs.runCommand "pre-commit" { } ''
                             cat ${nocommit}/pre-commit > $out
