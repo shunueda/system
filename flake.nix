@@ -195,9 +195,6 @@
                         firefox = {
                           enable = true;
                         };
-                        orbstack = {
-                          enable = true;
-                        };
                       };
                       fonts.fontconfig.enable = true;
                       home = {
@@ -221,7 +218,7 @@
                     };
                   };
                 personal =
-                  { pkgs, ... }:
+                  { ... }:
                   {
                     imports = [ self.darwinModules.base ];
                     home-manager.users.${user} = {
