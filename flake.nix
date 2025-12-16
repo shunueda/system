@@ -97,8 +97,6 @@
                     home-manager.users.${user} = {
                       imports = [
                         ./programs/homerow.nix
-                        ./programs/orbstack.nix
-                        ./programs/slack.nix
                       ];
                       programs = {
                         home-manager.enable = true;
@@ -205,7 +203,10 @@
                       home = {
                         username = user;
                         stateVersion = "25.11";
-                        packages = with pkgs; [ jetbrains-mono ];
+                        packages = with pkgs; [
+                          jetbrains-mono
+                          orbstack
+                        ];
                         file = {
                           ".emacs.d" = {
                             source = ./.emacs.d;
@@ -232,13 +233,17 @@
                     };
                   };
                 anterior =
-                  { ... }:
+                  { pkgs, ... }:
                   {
                     imports = [
                       self.darwinModules.base
                       self.darwinModules.linux-builder
                     ];
                     home-manager.users.${user} = {
+                      home.packages = with pkgs; [
+                        _1password-gui
+                        _1password-cli
+                      ];
                       programs = {
                         slack = {
                           enable = true;
