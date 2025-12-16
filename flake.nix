@@ -207,7 +207,7 @@
                         ];
                         file = {
                           ".emacs.d" = {
-                            source = ./emacs.d;
+                            source = ./.emacs.d;
                             recursive = true;
                           };
                           ".ssh" = {
