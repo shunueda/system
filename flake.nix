@@ -95,8 +95,15 @@
                     };
                     security.pam.services.sudo_local.touchIdAuth = true;
                     home-manager.users.${user} = {
+                      imports = [
+                        # https://github.com/NixOS/nixpkgs/pull/470905
+                        ./nix/homerow.nix
+                      ];
                       programs = {
                         home-manager.enable = true;
+                        homerow = {
+                          enable = true;
+                        };
                         zsh = {
                           enable = true;
                           enableCompletion = true;
