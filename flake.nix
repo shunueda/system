@@ -97,6 +97,8 @@
                     home-manager.users.${user} = {
                       imports = [
                         ./programs/homerow.nix
+                        ./programs/orbstack.nix
+                        ./programs/slack.nix
                       ];
                       programs = {
                         home-manager.enable = true;
@@ -195,16 +197,15 @@
                         firefox = {
                           enable = true;
                         };
+                        orbstack = {
+                          enable = true;
+                        };
                       };
                       fonts.fontconfig.enable = true;
                       home = {
                         username = user;
                         stateVersion = "25.11";
-                        packages = with pkgs; [
-                          mergiraf
-                          jetbrains-mono
-                          orbstack
-                        ];
+                        packages = with pkgs; [ jetbrains-mono ];
                         file = {
                           ".emacs.d" = {
                             source = ./.emacs.d;
@@ -231,13 +232,18 @@
                     };
                   };
                 anterior =
-                  { pkgs, ... }:
+                  { ... }:
                   {
                     imports = [
                       self.darwinModules.base
                       self.darwinModules.linux-builder
                     ];
                     home-manager.users.${user} = {
+                      programs = {
+                        slack = {
+                          enable = true;
+                        };
+                      };
                     };
                   };
                 linux-builder =
