@@ -6,7 +6,7 @@
 }:
 
 let
-  cfg = config.programs.stack;
+  cfg = config.programs.slack;
 in
 {
   options.programs.slack = {
