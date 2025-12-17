@@ -14,7 +14,7 @@ let
     src = pkgs.fetchzip {
       url = "https://builds.homerow.app/v${finalAttrs.version}/Homerow.zip";
       hash = "sha256-tvFZE8lOdyJ+D5T/93c3tiZzA6TbFGWtOghEyoCFYuc=";
-      stripRoot = true;
+      stripRoot = false;
     };
 
     installPhase = ''
