@@ -9,26 +9,19 @@ let
 
   # https://github.com/NixOS/nixpkgs/pull/470905
   homerow = pkgs.stdenvNoCC.mkDerivation (finalAttrs: {
-    pname = "Homerow";
+    pname = "homerow";
     version = "1.4.1";
-
     src = pkgs.fetchzip {
-      extension = "zip";
-      name = "Homerow.app";
       url = "https://builds.homerow.app/v${finalAttrs.version}/Homerow.zip";
-      hash = "sha256-/Zp62UOvjnj+sN8VTpGC9EZ5cLsjOe/A5ZZkJAx/5Xc=";
+      hash = "sha256-tvFZE8lOdyJ+D5T/93c3tiZzA6TbFGWtOghEyoCFYuc=";
+      stripRoot = true;
     };
-
-    dontConfigure = true;
-    dontBuild = true;
-
-    sourceRoot = ".";
 
     installPhase = ''
       runHook preInstall
 
       mkdir -p "$out/Applications"
-      cp -r *.app "$out/Applications"
+      cp -R *.app "$out/Applications"
 
       runHook postInstall
     '';
@@ -36,7 +29,7 @@ let
 in
 {
   options.programs.homerow = {
-    enable = lib.mkEnableOption "Lightweight coding agent that runs in your terminal";
+    enable = lib.mkEnableOption "Keyboard shortcuts for every button in macOS";
   };
 
   config = lib.mkIf cfg.enable { home.packages = [ homerow ]; };

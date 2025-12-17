@@ -76,6 +76,8 @@
                         LaunchServices.LSQuarantine = false;
                         NSGlobalDomain = {
                           AppleShowAllExtensions = true;
+                          KeyRepeat = 1;
+                          InitialKeyRepeat = 15;
                         };
                         dock = {
                           show-recents = false;
@@ -84,20 +86,20 @@
                           orientation = "bottom";
                           tilesize = 32;
                         };
-                        finder = {
-                          _FXShowPosixPathInTitle = false;
-                        };
                       };
                       keyboard = {
                         enableKeyMapping = true;
                         remapCapsLockToControl = true;
                       };
                     };
+                    programs = {
+                      _1password-gui = {
+                        enable = true;
+                      };
+                    };
                     security.pam.services.sudo_local.touchIdAuth = true;
                     home-manager.users.${user} = {
-                      imports = [
-                        ./programs/homerow.nix
-                      ];
+                      imports = [ ./programs/homerow.nix ];
                       programs = {
                         home-manager.enable = true;
                         homerow = {
@@ -192,9 +194,6 @@
                               typescript-language-server
                             ]);
                         };
-                        firefox = {
-                          enable = true;
-                        };
                       };
                       fonts.fontconfig.enable = true;
                       home = {
@@ -203,6 +202,7 @@
                         packages = with pkgs; [
                           jetbrains-mono
                           orbstack
+                          rectangle
                         ];
                         file = {
                           ".emacs.d" = {
@@ -218,10 +218,11 @@
                     };
                   };
                 personal =
-                  { ... }:
+                  { pkgs, ... }:
                   {
                     imports = [ self.darwinModules.base ];
                     home-manager.users.${user} = {
+                      home.packages = with pkgs; [ discordo ];
                       programs = {
                         discord = {
                           enable = true;
@@ -237,9 +238,7 @@
                       self.darwinModules.linux-builder
                     ];
                     home-manager.users.${user} = {
-                      home.packages = with pkgs; [
-                        _1password-cli
-                      ];
+                      home.packages = with pkgs; [ _1password-cli ];
                     };
                   };
                 linux-builder =
