@@ -99,10 +99,16 @@
                     };
                     security.pam.services.sudo_local.touchIdAuth = true;
                     home-manager.users.${user} = {
-                      imports = [ ./programs/homerow.nix ];
+                      imports = [
+                        ./programs/homerow.nix
+                        ./programs/proton-pass.nix
+                      ];
                       programs = {
                         home-manager.enable = true;
                         homerow = {
+                          enable = true;
+                        };
+                        proton-pass = {
                           enable = true;
                         };
                         zsh = {
@@ -201,6 +207,7 @@
                         stateVersion = "25.11";
                         packages = with pkgs; [
                           jetbrains-mono
+                          maccy
                           orbstack
                           rectangle
                         ];

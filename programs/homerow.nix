@@ -1,3 +1,4 @@
+# https://github.com/NixOS/nixpkgs/pull/470905
 {
   config,
   lib,
@@ -7,7 +8,6 @@
 let
   cfg = config.programs.homerow;
 
-  # https://github.com/NixOS/nixpkgs/pull/470905
   homerow = pkgs.stdenvNoCC.mkDerivation (finalAttrs: {
     pname = "homerow";
     version = "1.4.1";
