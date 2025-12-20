@@ -140,7 +140,7 @@
                         git = {
                           enable = true;
                           signing = {
-                            key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOTzeR4G0wfPvVY6FjtC+rDEvGeWEeboqNJEC0b1To29";
+                            key = builtins.readFile ./.ssh/id_github_ed25519.pub;
                             format = "ssh";
                             signer = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign";
                             signByDefault = true;
