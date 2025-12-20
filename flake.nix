@@ -69,6 +69,12 @@
                     users.users.${user}.home = "/Users/${user}";
                     home-manager.useGlobalPkgs = true;
                     home-manager.useUserPackages = true;
+                    homebrew = {
+                      enable = true;
+                      masApps = {
+                        "1Password for Safari" = 1569813296;
+                      };
+                    };
                     system = {
                       primaryUser = user;
                       stateVersion = 6;
@@ -125,22 +131,25 @@
                             "*" = {
                               identityAgent = ''"~/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock"'';
                               identitiesOnly = true;
-                              addKeysToAgent = "yes";
                             };
                             "github.com" = {
                               user = "git";
-                              identityFile = "~/.ssh/id_github_ed25519";
+                              identityFile = "~/.ssh/id_ed25519_vcs";
+                            };
+                            "codeberg.org" = {
+                              user = "git";
+                              identityFile = "~/.ssh/id_ed25519_vcs";
                             };
                             "oyasai.io" = {
                               user = "oyasai";
-                              identityFile = "~/.ssh/id_oyasai_ed25519";
+                              identityFile = "~/.ssh/id_ed25519_oyasai";
                             };
                           };
                         };
                         git = {
                           enable = true;
                           signing = {
-                            key = builtins.readFile ./.ssh/id_github_ed25519.pub;
+                            key = builtins.readFile ./.ssh/id_ed25519_vcs.pub;
                             format = "ssh";
                             signer = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign";
                             signByDefault = true;
