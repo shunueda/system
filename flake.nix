@@ -139,6 +139,12 @@
                         };
                         git = {
                           enable = true;
+                          signing = {
+                            key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOTzeR4G0wfPvVY6FjtC+rDEvGeWEeboqNJEC0b1To29";
+                            format = "ssh";
+                            signer = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign";
+                            signByDefault = true;
+                          };
                           settings = {
                             init = {
                               defaultBranch = "master";
@@ -146,12 +152,6 @@
                             user = {
                               name = "Shun Ueda";
                               email = "me@shu.nu";
-                            };
-                            signing = {
-                              key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOTzeR4G0wfPvVY6FjtC+rDEvGeWEeboqNJEC0b1To29";
-                              format = "ssh";
-                              signer = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign";
-                              signByDefault = true;
                             };
                             diff.algorithm = "histogram";
                             rebase = {
