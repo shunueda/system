@@ -81,8 +81,7 @@
                         };
                         dock = {
                           show-recents = false;
-                          launchanim = true;
-                          mouse-over-hilite-stack = false;
+                          autohide = true;
                           orientation = "bottom";
                           tilesize = 32;
                         };
@@ -93,22 +92,19 @@
                       };
                     };
                     programs = {
+                      _1password = {
+                        enable = true;
+                      };
                       _1password-gui = {
                         enable = true;
                       };
                     };
                     security.pam.services.sudo_local.touchIdAuth = true;
                     home-manager.users.${user} = {
-                      imports = [
-                        ./programs/homerow.nix
-                        ./programs/proton-pass.nix
-                      ];
+                      imports = [ ./programs/homerow.nix ];
                       programs = {
                         home-manager.enable = true;
                         homerow = {
-                          enable = true;
-                        };
-                        proton-pass = {
                           enable = true;
                         };
                         zsh = {
@@ -126,19 +122,18 @@
                           enable = true;
                           enableDefaultConfig = false;
                           matchBlocks = {
-                            "github.com" = {
-                              host = "github.com";
-                              user = "git";
-                              identityFile = "~/.ssh/id_github_ed25519";
+                            "*" = {
+                              identityAgent = ''"~/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock"'';
                               identitiesOnly = true;
                               addKeysToAgent = "yes";
                             };
+                            "github.com" = {
+                              user = "git";
+                              identityFile = "~/.ssh/id_github_ed25519";
+                            };
                             "oyasai.io" = {
-                              host = "oyasai.io";
                               user = "oyasai";
                               identityFile = "~/.ssh/id_oyasai_ed25519";
-                              identitiesOnly = true;
-                              addKeysToAgent = "yes";
                             };
                           };
                         };
@@ -151,6 +146,12 @@
                             user = {
                               name = "Shun Ueda";
                               email = "me@shu.nu";
+                            };
+                            signing = {
+                              key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOTzeR4G0wfPvVY6FjtC+rDEvGeWEeboqNJEC0b1To29";
+                              format = "ssh";
+                              signer = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign";
+                              signByDefault = true;
                             };
                             diff.algorithm = "histogram";
                             rebase = {
@@ -209,7 +210,7 @@
                           jetbrains-mono
                           maccy
                           orbstack
-                          rectangle
+                          yabai
                         ];
                         file = {
                           ".emacs.d" = {
@@ -225,11 +226,10 @@
                     };
                   };
                 personal =
-                  { pkgs, ... }:
+                  { ... }:
                   {
                     imports = [ self.darwinModules.base ];
                     home-manager.users.${user} = {
-                      home.packages = with pkgs; [ discordo ];
                       programs = {
                         discord = {
                           enable = true;
@@ -238,15 +238,12 @@
                     };
                   };
                 anterior =
-                  { pkgs, ... }:
+                  { ... }:
                   {
                     imports = [
                       self.darwinModules.base
                       self.darwinModules.linux-builder
                     ];
-                    home-manager.users.${user} = {
-                      home.packages = with pkgs; [ _1password-cli ];
-                    };
                   };
                 linux-builder =
                   { lib, ... }:
@@ -255,10 +252,7 @@
                       linux-builder = {
                         enable = true;
                         ephemeral = true;
-                        systems = [
-                          "x86_64-linux"
-                          "aarch64-linux"
-                        ];
+                        systems = lib.platforms.linux;
                         config.boot.binfmt.emulatedSystems = [ "x86_64-linux" ];
                         config.virtualisation.cores = 6;
                         config.virtualisation.memorySize = lib.mkForce 12000;
