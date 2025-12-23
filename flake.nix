@@ -130,19 +130,15 @@
                           matchBlocks = {
                             "*" = {
                               identityAgent = ''"~/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock"'';
-                              identitiesOnly = true;
                             };
                             "github.com" = {
                               user = "git";
-                              identityFile = "~/.ssh/id_ed25519_vcs";
                             };
                             "codeberg.org" = {
                               user = "git";
-                              identityFile = "~/.ssh/id_ed25519_vcs";
                             };
                             "oyasai.io" = {
                               user = "oyasai";
-                              identityFile = "~/.ssh/id_ed25519_oyasai";
                             };
                           };
                         };
@@ -226,19 +222,16 @@
                             source = ./.emacs.d;
                             recursive = true;
                           };
-                          ".ssh" = {
-                            source = ./.ssh;
-                            recursive = true;
-                          };
                         };
                       };
                     };
                   };
                 personal =
-                  { ... }:
+                  { pkgs, ... }:
                   {
                     imports = [ self.darwinModules.base ];
                     home-manager.users.${user} = {
+                      home.packages = with pkgs; [ prismlauncher ];
                       programs = {
                         discord = {
                           enable = true;
