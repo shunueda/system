@@ -125,6 +125,12 @@
   (tuareg-mode . ocaml-eglot)
   (ocaml-eglot . eglot-ensure))
 
+;; Editorconfig
+(use-package editorconfig
+  :ensure t
+  :config
+  (editorconfig-mode 1))
+
 ;; Vertico
 (use-package vertico
   :init

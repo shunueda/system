@@ -59,7 +59,10 @@
                     ];
                     programs.nix-index-database.comma.enable = true;
                     nix = {
-                      settings.experimental-features = "nix-command flakes";
+                      settings.experimental-features = [
+                        "nix-command"
+                        "flakes"
+                      ];
                       gc.automatic = true;
                     };
                     nixpkgs = {
@@ -144,12 +147,6 @@
                         };
                         git = {
                           enable = true;
-                          signing = {
-                            key = builtins.readFile ./.ssh/id_ed25519_vcs.pub;
-                            format = "ssh";
-                            signer = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign";
-                            signByDefault = true;
-                          };
                           settings = {
                             init = {
                               defaultBranch = "master";
@@ -189,6 +186,7 @@
                             [
                               avy
                               corfu
+                              editorconfig
                               git-gutter
                               magit
                               nix-ts-mode
