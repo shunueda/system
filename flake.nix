@@ -72,12 +72,6 @@
                     users.users.${user}.home = "/Users/${user}";
                     home-manager.useGlobalPkgs = true;
                     home-manager.useUserPackages = true;
-                    homebrew = {
-                      enable = true;
-                      masApps = {
-                        "1Password for Safari" = 1569813296;
-                      };
-                    };
                     system = {
                       primaryUser = user;
                       stateVersion = 6;
