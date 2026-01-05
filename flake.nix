@@ -104,9 +104,6 @@
                       _1password = {
                         enable = true;
                       };
-                      _1password-gui = {
-                        enable = true;
-                      };
                     };
                     security.pam.services.sudo_local.touchIdAuth = true;
                     home-manager.users.${user} = {
@@ -228,6 +225,11 @@
                   { pkgs, ... }:
                   {
                     imports = [ self.darwinModules.base ];
+                    programs = {
+                      _1password-gui = {
+                        enable = true;
+                      };
+                    };
                     home-manager.users.${user} = {
                       home.packages = with pkgs; [ prismlauncher ];
                       programs = {
