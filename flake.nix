@@ -157,7 +157,7 @@
                               enabled = true;
                             };
                           };
-                          hooks.pre-commit = pkgs.runCommand "pre-commit" { } ''
+                          hooks.pre-commit = pkgs.runCommandLocal "pre-commit" { } ''
                             cat ${nocommit}/pre-commit > $out
                             chmod +x $out
                           '';
