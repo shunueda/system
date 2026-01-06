@@ -21,7 +21,9 @@
     treefmt-nix.url = "github:numtide/treefmt-nix";
     nocommit = {
       url = "github:nobssoftware/nocommit";
-      flake = false;
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.flake-parts.follows = "flake-parts";
+      inputs.treefmt-nix.follows = "treefmt-nix";
     };
   };
   outputs =
@@ -157,10 +159,7 @@
                               enabled = true;
                             };
                           };
-                          hooks.pre-commit = pkgs.runCommandLocal "pre-commit" { } ''
-                            cat ${nocommit}/pre-commit > $out
-                            chmod +x $out
-                          '';
+                          hooks.pre-commit = "${lib.getExe nocommit.packages.${system}.default}";
                         };
                         mergiraf = {
                           enable = true;
