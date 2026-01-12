@@ -163,6 +163,10 @@
 (set-face-foreground 'git-gutter:added "green")
 (set-face-foreground 'git-gutter:deleted "red")
 
+;; exec-path-from-shell
+(when (memq window-system '(mac ns x))
+  (exec-path-from-shell-initialize))
+
 ;; Undo tree
 (use-package undo-tree
   :config
@@ -171,3 +175,13 @@
 
 (use-package vterm
   :ensure t)
+
+(use-package fzf
+  :bind
+    ;; Don't forget to set keybinds!
+  :config
+  (setq fzf/args "-x --color bw --print-query --margin=1,0 --no-hscroll"
+        fzf/git-grep-args "-i --line-number %s"
+        fzf/grep-command "grep -nrH"
+        fzf/position-bottom t
+        fzf/window-height 15))

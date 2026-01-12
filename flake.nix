@@ -5,10 +5,6 @@
       url = "github:nix-darwin/nix-darwin/nix-darwin-25.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nix-index-database = {
-      url = "github:nix-community/nix-index-database";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     home-manager = {
       url = "github:nix-community/home-manager/release-25.11";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -30,7 +26,6 @@
     {
       nixpkgs,
       nix-darwin,
-      nix-index-database,
       home-manager,
       flake-parts,
       flakeregistry,
@@ -56,10 +51,8 @@
                   {
                     imports = [
                       home-manager.darwinModules.home-manager
-                      nix-index-database.darwinModules.nix-index
                       self.darwinModules.pin-nixpkgs
                     ];
-                    programs.nix-index-database.comma.enable = true;
                     nix = {
                       settings.experimental-features = [
                         "nix-command"
@@ -161,11 +154,11 @@
                           };
                           hooks.pre-commit = "${lib.getExe nocommit.packages.${system}.default}";
                         };
-                        mergiraf = {
+                        mergiraf.enable = true;
+                        docker-cli.enable = true;
+                        fzf = {
                           enable = true;
-                        };
-                        docker-cli = {
-                          enable = true;
+                          enableZshIntegration = true;
                         };
                         emacs = {
                           enable = true;
@@ -177,6 +170,8 @@
                               avy
                               corfu
                               editorconfig
+                              exec-path-from-shell
+                              fzf
                               git-gutter
                               magit
                               nix-ts-mode
@@ -203,7 +198,6 @@
                           jetbrains-mono
                           maccy
                           orbstack
-                          yabai
                         ];
                         file = {
                           ".emacs.d" = {
