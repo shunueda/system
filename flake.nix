@@ -64,7 +64,12 @@
                       hostPlatform = system;
                       config.allowUnfree = true;
                     };
-                    users.users.${user}.home = "/Users/${user}";
+                    users.knownUsers = [ user ];
+                    users.users.${user} = {
+                      uid = 501;
+                      home = "/Users/${user}";
+                      shell = pkgs.bash;
+                    };
                     home-manager.useGlobalPkgs = true;
                     home-manager.useUserPackages = true;
                     system = {
@@ -90,9 +95,7 @@
                       };
                     };
                     programs = {
-                      _1password = {
-                        enable = true;
-                      };
+                      _1password.enable = true;
                     };
                     security.pam.services.sudo_local.touchIdAuth = true;
                     home-manager.users.${user} = {
@@ -102,16 +105,14 @@
                         homerow = {
                           enable = true;
                         };
-                        zsh = {
+                        bash = {
                           enable = true;
-                          enableCompletion = true;
-                          autosuggestion.enable = true;
-                          syntaxHighlighting.enable = true;
-                          oh-my-zsh = {
-                            enable = true;
-                            plugins = [ ];
-                            theme = "robbyrussell";
-                          };
+                          historyControl = [
+                            "ignorespace"
+                            "ignoredups"
+                          ];
+                          historySize = 1000000;
+                          historyFileSize = 1000000;
                         };
                         ssh = {
                           enable = true;
@@ -164,9 +165,7 @@
                           enable = true;
                           package = pkgs.emacs;
                           extraPackages =
-                            epkgs:
-                            with epkgs;
-                            [
+                            epkgs: with epkgs; [
                               avy
                               corfu
                               editorconfig
@@ -181,13 +180,7 @@
                               undo-tree
                               vertico
                               vterm
-                            ]
-                            ++ (with pkgs; [
-                              nixd
-                              ocamlPackages.ocaml-lsp
-                              typescript
-                              typescript-language-server
-                            ]);
+                            ];
                         };
                       };
                       fonts.fontconfig.enable = true;
@@ -198,6 +191,10 @@
                           jetbrains-mono
                           maccy
                           orbstack
+                          nixd
+                          ocamlPackages.ocaml-lsp
+                          typescript
+                          typescript-language-server
                         ];
                         file = {
                           ".emacs.d" = {
