@@ -181,3 +181,8 @@
         fzf/grep-command "grep -nrH"
         fzf/position-bottom t
         fzf/window-height 15))
+
+(use-package avy
+  :ensure t
+  :bind
+  ("C-a" . avy-goto-word-0))
