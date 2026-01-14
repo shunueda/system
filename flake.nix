@@ -14,7 +14,10 @@
       url = "github:nixos/flake-registry";
       flake = false;
     };
-    treefmt-nix.url = "github:numtide/treefmt-nix";
+    treefmt-nix = {
+      url = "github:numtide/treefmt-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     nocommit = {
       url = "github:nobssoftware/nocommit";
       inputs.nixpkgs.follows = "nixpkgs";
