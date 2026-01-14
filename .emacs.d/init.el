@@ -174,7 +174,7 @@
 
 (use-package fzf
   :bind
-    ;; Don't forget to set keybinds!
+  (("C-t" . fzf-find-file))
   :config
   (setq fzf/args "-x --color bw --print-query --margin=1,0 --no-hscroll"
         fzf/git-grep-args "-i --line-number %s"
