@@ -114,7 +114,6 @@
                         docker-cli.enable = true;
                         emacs = {
                           enable = true;
-                          package = pkgs.emacs;
                           extraPackages =
                             epkgs: with epkgs; [
                               avy
@@ -134,6 +133,10 @@
                             ];
                         };
                         fzf.enable = true;
+                        gh = {
+                          enable = true;
+                          settings.git_protocol = "ssh";
+                        };
                         ghostty = {
                           enable = true;
                           package = pkgs.ghostty-bin;
@@ -141,10 +144,7 @@
                             auto-update = "off";
                             link-previews = true;
                             mouse-hide-while-typing = true;
-                            theme = "dark:zenburn";
-                            window-inherit-working-directory = true;
                             window-save-state = "always";
-                            working-directory = "home";
                           };
                         };
                         git = {
@@ -171,9 +171,7 @@
                           hooks.pre-commit = "${lib.getExe nocommit.packages.${system}.default}";
                         };
                         home-manager.enable = true;
-                        homerow = {
-                          enable = true;
-                        };
+                        homerow.enable = true;
                         mergiraf.enable = true;
                         ssh = {
                           enable = true;
