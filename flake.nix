@@ -101,10 +101,7 @@
                     home-manager.users.${user} = {
                       imports = [ ./programs/homerow.nix ];
                       programs = {
-                        home-manager.enable = true;
-                        homerow = {
-                          enable = true;
-                        };
+                        # keep-sorted start block=yes
                         bash = {
                           enable = true;
                           historyControl = [
@@ -114,22 +111,40 @@
                           historySize = 1000000;
                           historyFileSize = 1000000;
                         };
-                        ssh = {
+                        docker-cli.enable = true;
+                        emacs = {
                           enable = true;
-                          enableDefaultConfig = false;
-                          matchBlocks = {
-                            "*" = {
-                              identityAgent = ''"~/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock"'';
-                            };
-                            "github.com" = {
-                              user = "git";
-                            };
-                            "codeberg.org" = {
-                              user = "git";
-                            };
-                            "oyasai.io" = {
-                              user = "oyasai";
-                            };
+                          package = pkgs.emacs;
+                          extraPackages =
+                            epkgs: with epkgs; [
+                              avy
+                              corfu
+                              editorconfig
+                              exec-path-from-shell
+                              fzf
+                              git-gutter
+                              magit
+                              nix-ts-mode
+                              ocaml-eglot
+                              treesit-grammars.with-all-grammars
+                              tuareg
+                              undo-tree
+                              vertico
+                              zenburn-theme
+                            ];
+                        };
+                        fzf.enable = true;
+                        ghostty = {
+                          enable = true;
+                          package = pkgs.ghostty-bin;
+                          settings = {
+                            auto-update = "off";
+                            link-previews = true;
+                            mouse-hide-while-typing = true;
+                            theme = "dark:zenburn";
+                            window-inherit-working-directory = true;
+                            window-save-state = "always";
+                            working-directory = "home";
                           };
                         };
                         git = {
@@ -155,11 +170,28 @@
                           };
                           hooks.pre-commit = "${lib.getExe nocommit.packages.${system}.default}";
                         };
-                        mergiraf.enable = true;
-                        docker-cli.enable = true;
-                        fzf = {
+                        home-manager.enable = true;
+                        homerow = {
                           enable = true;
-                          enableZshIntegration = true;
+                        };
+                        mergiraf.enable = true;
+                        ssh = {
+                          enable = true;
+                          enableDefaultConfig = false;
+                          matchBlocks = {
+                            "*" = {
+                              identityAgent = ''"~/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock"'';
+                            };
+                            "github.com" = {
+                              user = "git";
+                            };
+                            "codeberg.org" = {
+                              user = "git";
+                            };
+                            "oyasai.io" = {
+                              user = "oyasai";
+                            };
+                          };
                         };
                         starship = {
                           enable = true;
@@ -185,34 +217,7 @@
                             };
                           };
                         };
-                        ghostty = {
-                          enable = true;
-                          package = pkgs.ghostty-bin;
-                          settings = {
-                            theme = "zenburn";
-                          };
-                        };
-                        emacs = {
-                          enable = true;
-                          package = pkgs.emacs;
-                          extraPackages =
-                            epkgs: with epkgs; [
-                              avy
-                              corfu
-                              editorconfig
-                              exec-path-from-shell
-                              fzf
-                              git-gutter
-                              magit
-                              nix-ts-mode
-                              ocaml-eglot
-                              treesit-grammars.with-all-grammars
-                              tuareg
-                              undo-tree
-                              vertico
-                              zenburn-theme
-                            ];
-                        };
+                        # keep-sorted end
                       };
                       fonts.fontconfig.enable = true;
                       home = {
