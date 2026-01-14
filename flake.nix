@@ -188,6 +188,9 @@
                         ghostty = {
                           enable = true;
                           package = pkgs.ghostty-bin;
+                          settings = {
+                            theme = "zenburn";
+                          };
                         };
                         emacs = {
                           enable = true;
@@ -207,7 +210,7 @@
                               tuareg
                               undo-tree
                               vertico
-                              vterm
+                              zenburn-theme
                             ];
                         };
                       };

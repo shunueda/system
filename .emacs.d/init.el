@@ -39,7 +39,6 @@
 (when (file-exists-p custom-file)
   (load custom-file))
 
-
 ;; Font
 (set-frame-font "JetBrains Mono 13")
 
@@ -172,9 +171,6 @@
   :config
   (setq undo-tree-auto-save-history nil)
   (global-undo-tree-mode))
-
-(use-package vterm
-  :ensure t)
 
 (use-package fzf
   :bind
