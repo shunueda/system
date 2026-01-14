@@ -161,6 +161,34 @@
                           enable = true;
                           enableZshIntegration = true;
                         };
+                        starship = {
+                          enable = true;
+                          settings = {
+                            add_newline = false;
+                            format = "\${custom.repo_name}$directory$character";
+                            custom.repo_name = {
+                              command = "basename $(git rev-parse --show-toplevel 2>/dev/null || echo '.')";
+                              when = "git rev-parse --git-dir > /dev/null 2>&1";
+                              format = "[$symbol$output]($style) ";
+                              style = "white";
+                            };
+                            directory = {
+                              truncation_length = 3;
+                              truncate_to_repo = true;
+                              format = "[$path]($style) ";
+                              style = "white";
+                              home_symbol = "~";
+                            };
+                            character = {
+                              success_symbol = "[\\$](white)";
+                              error_symbol = "[\\$](white)";
+                            };
+                          };
+                        };
+                        ghostty = {
+                          enable = true;
+                          package = pkgs.ghostty-bin;
+                        };
                         emacs = {
                           enable = true;
                           package = pkgs.emacs;
