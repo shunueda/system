@@ -39,9 +39,6 @@
 (when (file-exists-p custom-file)
   (load custom-file))
 
-;; Theme
-(load-theme 'zenburn t)
-
 ;; Font
 (set-frame-font "JetBrains Mono 13")
 
