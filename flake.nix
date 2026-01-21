@@ -213,7 +213,12 @@
                             };
                           };
                         };
-                        zoxide.enable = true;
+                        zoxide = {
+                          enable = true;
+                          options = [
+                            "--cmd cd"
+                          ];
+                        };
                         # keep-sorted end
                       };
                       fonts.fontconfig.enable = true;
