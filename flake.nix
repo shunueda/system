@@ -199,18 +199,16 @@
                           enable = true;
                           settings = {
                             add_newline = false;
-                            format = "\${custom.repo_name}($git_branch)$directory$character";
+                            format = "\${custom.repo_name}@$git_branch:$directory$character";
                             custom.repo_name = {
                               command = "basename $(git rev-parse --show-toplevel 2>/dev/null || echo '.')";
                               when = "git rev-parse --git-dir > /dev/null 2>&1";
-                              format = "[$symbol$output]($style) ";
+                              format = "[$output]($style)";
                               style = "white";
                             };
                             directory = {
                               truncation_length = 3;
                               truncate_to_repo = true;
-                              format = " [$path]($style) ";
-                              style = "white";
                               home_symbol = "~";
                             };
                             character = {
