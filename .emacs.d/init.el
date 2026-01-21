@@ -183,6 +183,4 @@
         fzf/window-height 15))
 
 (use-package avy
-  :ensure t
-  :bind
-  ("C-a" . avy-goto-word-0))
+  :ensure t)

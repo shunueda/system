@@ -166,6 +166,7 @@
                               autostash = true;
                               stat = true;
                             };
+                            merge.directoryRenames = true;
                             rerere = {
                               autoupdate = true;
                               enabled = true;
@@ -198,7 +199,7 @@
                           enable = true;
                           settings = {
                             add_newline = false;
-                            format = "\${custom.repo_name}$directory$character";
+                            format = "\${custom.repo_name}($git_branch)$directory$character";
                             custom.repo_name = {
                               command = "basename $(git rev-parse --show-toplevel 2>/dev/null || echo '.')";
                               when = "git rev-parse --git-dir > /dev/null 2>&1";
@@ -208,13 +209,16 @@
                             directory = {
                               truncation_length = 3;
                               truncate_to_repo = true;
-                              format = "[$path]($style) ";
+                              format = " [$path]($style) ";
                               style = "white";
                               home_symbol = "~";
                             };
                             character = {
                               success_symbol = "[\\$](white)";
                               error_symbol = "[\\$](white)";
+                            };
+                            git_branch = {
+                              format = "$branch";
                             };
                           };
                         };
