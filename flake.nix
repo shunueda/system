@@ -190,9 +190,6 @@
                             "codeberg.org" = {
                               user = "git";
                             };
-                            "oyasai.io" = {
-                              user = "oyasai";
-                            };
                           };
                         };
                         starship = {
@@ -200,12 +197,12 @@
                           settings = {
                             add_newline = false;
                             format = "$git_branch:$directory $character ";
+                            character = {
+                              format = "[\\$](white)";
+                            };
                             directory = {
                               format = "[$path]($style)";
                               style = "bold blue";
-                            };
-                            character = {
-                              format = "[\\$](white)";
                             };
                             git_branch = {
                               format = "[$branch]($style)";
@@ -234,6 +231,9 @@
                             source = ./.emacs.d;
                             recursive = true;
                           };
+                          ".hushlogin" = {
+                            text = "";
+                          };
                         };
                       };
                     };
@@ -243,15 +243,18 @@
                   {
                     imports = [ self.darwinModules.base ];
                     programs = {
-                      _1password-gui = {
-                        enable = true;
-                      };
+                      _1password-gui.enable = true;
                     };
                     home-manager.users.${user} = {
                       home.packages = with pkgs; [ prismlauncher ];
                       programs = {
-                        discord = {
-                          enable = true;
+                        discord.enable = true;
+                        ssh = {
+                          matchBlocks = {
+                            "oyasai.io" = {
+                              user = "oyasai";
+                            };
+                          };
                         };
                       };
                     };
