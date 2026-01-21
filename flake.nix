@@ -199,28 +199,21 @@
                           enable = true;
                           settings = {
                             add_newline = false;
-                            format = "\${custom.repo_name}@$git_branch:$directory$character";
-                            custom.repo_name = {
-                              command = "basename $(git rev-parse --show-toplevel 2>/dev/null || echo '.')";
-                              when = "git rev-parse --git-dir > /dev/null 2>&1";
-                              format = "[$output]($style)";
-                              style = "white";
-                            };
+                            format = "$git_branch:$directory $character ";
                             directory = {
-                              truncation_length = 3;
-                              truncate_to_repo = true;
-                              home_symbol = "~";
+                              format = "[$path]($style)";
+                              style = "bold blue";
                             };
                             character = {
-                              success_symbol = "[\\$](white)";
-                              error_symbol = "[\\$](white)";
+                              format = "[\\$](white)";
                             };
                             git_branch = {
-                              format = "$branch";
+                              format = "[$branch]($style)";
+                              style = "bold green";
                             };
                           };
                         };
-                        zoxide.enable =true;
+                        zoxide.enable = true;
                         # keep-sorted end
                       };
                       fonts.fontconfig.enable = true;
