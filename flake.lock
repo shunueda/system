@@ -136,7 +136,9 @@
         "nixpkgs": [
           "nixpkgs"
         ],
-        "systems": "systems",
+        "systems": [
+          "systems"
+        ],
         "treefmt-nix": [
           "treefmt-nix"
         ]
@@ -164,6 +166,7 @@
         "nixpkgs": "nixpkgs",
         "nocommit": "nocommit",
         "sops-nix": "sops-nix",
+        "systems": "systems",
         "treefmt-nix": "treefmt-nix"
       }
     },
@@ -197,8 +200,9 @@
         "type": "github"
       },
       "original": {
-        "id": "systems",
-        "type": "indirect"
+        "owner": "nix-systems",
+        "repo": "default",
+        "type": "github"
       }
     },
     "treefmt-nix": {

@@ -26,13 +26,15 @@
       url = "github:nobssoftware/nocommit";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.flake-parts.follows = "flake-parts";
+      inputs.systems.follows = "systems";
       inputs.treefmt-nix.follows = "treefmt-nix";
     };
+    systems.url = "github:nix-systems/default";
   };
   outputs =
-    { flake-parts, ... }@inputs:
+    { flake-parts, systems, ... }@inputs:
     flake-parts.lib.mkFlake { inherit inputs; } {
-      systems = [ "aarch64-darwin" ];
+      systems = import systems;
       imports = [
         ./nix/darwin-configurations.nix
         ./nix/treefmt.nix
