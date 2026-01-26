@@ -14,6 +14,10 @@
       url = "github:nixos/flake-registry";
       flake = false;
     };
+    sops-nix = {
+      url = "github:mic92/sops-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     treefmt-nix = {
       url = "github:numtide/treefmt-nix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -32,6 +36,7 @@
       home-manager,
       flake-parts,
       flakeregistry,
+      sops-nix,
       nocommit,
       ...
     }@inputs:
@@ -54,6 +59,7 @@
                   {
                     imports = [
                       home-manager.darwinModules.home-manager
+                      sops-nix.darwinModules.sops
                       self.darwinModules.pin-nixpkgs
                     ];
                     nix = {
@@ -103,6 +109,7 @@
                     security.pam.services.sudo_local.touchIdAuth = true;
                     home-manager.users.${user} = {
                       imports = [ ./programs/homerow.nix ];
+                      xdg.enable = true;
                       programs = {
                         # keep-sorted start block=yes
                         bash = {
@@ -136,10 +143,6 @@
                             ];
                         };
                         fzf.enable = true;
-                        gh = {
-                          enable = true;
-                          settings.git_protocol = "ssh";
-                        };
                         ghostty = {
                           enable = true;
                           package = pkgs.ghostty-bin;
@@ -172,7 +175,7 @@
                               enabled = true;
                             };
                           };
-                          hooks.pre-commit = "${lib.getExe nocommit.packages.${system}.default}";
+                          hooks.pre-commit = lib.getExe nocommit.packages.${system}.default;
                         };
                         home-manager.enable = true;
                         homerow.enable = true;
@@ -218,11 +221,14 @@
                         username = user;
                         stateVersion = "25.11";
                         packages = with pkgs; [
+                          age
+                          gnupg
                           jetbrains-mono
                           maccy
                           orbstack
                           nixd
                           ocamlPackages.ocaml-lsp
+                          sops
                           typescript
                           typescript-language-server
                         ];
@@ -235,6 +241,17 @@
                             text = "";
                           };
                         };
+                      };
+                    };
+                    sops = {
+                      age = {
+                        keyFile = "/Users/${user}/.config/sops/age/keys.txt";
+                        sshKeyPaths = [ ];
+                      };
+                      gnupg.sshKeyPaths = [ ];
+                      defaultSopsFile = ./secrets/example.yaml;
+                      secrets.example_key = {
+                        path = "/Users/${user}/test.txt";
                       };
                     };
                   };
