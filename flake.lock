@@ -38,22 +38,6 @@
         "type": "indirect"
       }
     },
-    "flakeregistry": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1763556067,
-        "narHash": "sha256-q2jzJQdsJMpD3dbuNphQJgwx6XeGPonWOp43U0nY7o0=",
-        "owner": "nixos",
-        "repo": "flake-registry",
-        "rev": "cb70c9306b44501de412649c356dee503a25f119",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nixos",
-        "repo": "flake-registry",
-        "type": "github"
-      }
-    },
     "home-manager": {
       "inputs": {
         "nixpkgs": [
@@ -160,7 +144,6 @@
     "root": {
       "inputs": {
         "flake-parts": "flake-parts",
-        "flakeregistry": "flakeregistry",
         "home-manager": "home-manager",
         "nix-darwin": "nix-darwin",
         "nixpkgs": "nixpkgs",

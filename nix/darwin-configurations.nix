@@ -1,26 +1,15 @@
-{
-  lib,
-  self,
-  inputs,
-  ...
-}:
+{ lib, inputs, ... }:
 {
   flake = {
     darwinConfigurations =
       let
         darwinModules =
-          let
-            user = "me";
-            system = "aarch64-darwin";
-          in
+          { user, system }:
           {
             common =
               { pkgs, ... }:
               {
-                imports = [
-                  inputs.home-manager.darwinModules.home-manager
-                  darwinModules.pin-nixpkgs
-                ];
+                imports = [ inputs.home-manager.darwinModules.home-manager ];
                 nix = {
                   settings.experimental-features = [
                     "nix-command"
@@ -241,21 +230,7 @@
                   settings.trusted-users = [ "@admin" ];
                 };
               };
-            pin-nixpkgs =
-              { ... }:
-              {
-                system.configurationRevision = self.rev or self.dirtyRev or null;
-                nix.registry.nixpkgs.to = {
-                  type = "github";
-                  owner = "nixos";
-                  repo = "nixpkgs";
-                  inherit (inputs.nixpkgs.sourceInfo) narHash rev;
-                };
-                nix.extraOptions = ''
-                  flake-registry = ${inputs.flakeregistry}/flake-registry.json
-                '';
-              };
-            personal =
+            hobby =
               { pkgs, ... }:
               {
                 home-manager.users.${user} =
@@ -279,16 +254,24 @@
       in
       {
         personal = inputs.nix-darwin.lib.darwinSystem {
-          modules = with darwinModules; [
-            common
-            personal
-          ];
+          modules =
+            with darwinModules {
+              user = "me";
+              system = "aarch64-darwin";
+            }; [
+              common
+              hobby
+            ];
         };
         anterior = inputs.nix-darwin.lib.darwinSystem {
-          modules = with darwinModules; [
-            common
-            linux-builder
-          ];
+          modules =
+            with darwinModules {
+              user = "me";
+              system = "aarch64-darwin";
+            }; [
+              common
+              linux-builder
+            ];
         };
       };
   };
