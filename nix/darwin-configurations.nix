@@ -165,7 +165,7 @@
                           add_newline = false;
                           format = "$git_branch:$directory $character ";
                           character = {
-         g                   format = "[\\$](white)";
+                            format = "[\\$](white)";
                           };
                           directory = {
                             format = "[$path]($style)";
