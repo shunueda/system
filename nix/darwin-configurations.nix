@@ -62,9 +62,6 @@
                     remapCapsLockToControl = true;
                   };
                 };
-                programs = {
-                  _1password.enable = true;
-                };
                 security.pam.services.sudo_local.touchIdAuth = true;
                 home-manager.users.${user} =
                   { config, ... }:
@@ -148,14 +145,9 @@
                         enable = true;
                         enableDefaultConfig = false;
                         matchBlocks = {
-                          "*" = {
-                            identityAgent = ''"~/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock"'';
-                          };
                           "github.com" = {
                             user = "git";
-                          };
-                          "codeberg.org" = {
-                            user = "git";
+                            identityFile = config.sops.secrets.id_ed25519_github.path;
                           };
                         };
                       };
@@ -205,6 +197,9 @@
                           text = "";
                         };
                       };
+                      sessionVariables = {
+                        EDITOR = "emacs";
+                      };
                     };
                     sops = {
                       age = {
@@ -212,9 +207,19 @@
                         sshKeyPaths = [ ];
                       };
                       gnupg.sshKeyPaths = [ ];
-                      defaultSopsFile = ../secrets/example.yaml;
-                      secrets.example_key = {
-                        path = "${config.home.homeDirectory}/test.txt";
+                      defaultSopsFile = ../secrets.yaml;
+                      secrets = {
+                        id_ed25519_github = { };
+                        id_ed25519_oyasai = { };
+                      };
+                    };
+                    # https://github.com/Mic92/sops-nix/issues/890
+                    launchd.agents.sops-nix = pkgs.lib.mkIf pkgs.stdenv.isDarwin {
+                      enable = true;
+                      config = {
+                        EnvironmentVariables = {
+                          PATH = pkgs.lib.mkForce "/usr/bin:/bin:/usr/sbin:/sbin";
+                        };
                       };
                     };
                   };
@@ -250,34 +255,34 @@
                   flake-registry = ${inputs.flakeregistry}/flake-registry.json
                 '';
               };
-          };
-      in
-      {
-        personal = inputs.nix-darwin.lib.darwinSystem {
-          modules =
-            with darwinModules;
-            [ common ]
-            ++ (
+            personal =
               { pkgs, ... }:
               {
-                programs = {
-                  _1password-gui.enable = true;
-                };
-                home-manager.users.${user} = {
-                  home.packages = with pkgs; [ prismlauncher ];
-                  programs = {
-                    discord.enable = true;
-                    ssh = {
-                      matchBlocks = {
-                        "oyasai.io" = {
-                          user = "oyasai";
+                home-manager.users.${user} =
+                  { config, ... }:
+                  {
+                    home.packages = with pkgs; [ prismlauncher ];
+                    programs = {
+                      discord.enable = true;
+                      ssh = {
+                        matchBlocks = {
+                          "oyasai.io" = {
+                            user = "oyasai";
+                            identityFile = config.sops.secrets.id_ed25519_oyasai.path;
+                          };
                         };
                       };
                     };
                   };
-                };
-              }
-            );
+              };
+          };
+      in
+      {
+        personal = inputs.nix-darwin.lib.darwinSystem {
+          modules = with darwinModules; [
+            common
+            personal
+          ];
         };
         anterior = inputs.nix-darwin.lib.darwinSystem {
           modules = with darwinModules; [
