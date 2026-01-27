@@ -5,6 +5,9 @@
       let
         darwinModules =
           { user, system }:
+          let
+            nocommit = inputs.nocommit.packages.${system}.default;
+          in
           {
             common =
               { pkgs, ... }:
@@ -125,7 +128,7 @@
                             enabled = true;
                           };
                         };
-                        hooks.pre-commit = lib.getExe inputs.nocommit.packages.${system}.default;
+                        hooks.pre-commit = lib.getExe nocommit;
                       };
                       home-manager.enable = true;
                       homerow.enable = true;
@@ -230,7 +233,7 @@
                   settings.trusted-users = [ "@admin" ];
                 };
               };
-            hobby =
+            personal =
               { pkgs, ... }:
               {
                 home-manager.users.${user} =
@@ -250,6 +253,22 @@
                     };
                   };
               };
+            anterior =
+              { ... }:
+              {
+                home-manager.users.${user} =
+                  { ... }:
+                  {
+                    imports = [ ../programs/ensure-jupyter-no-output.nix ];
+                    home.packages = [
+                      # anterior repo's hook expect nocommit to be install globally
+                      nocommit
+                    ];
+                    programs = {
+                      ensure-jupyter-no-output.enable = true;
+                    };
+                  };
+              };
           };
       in
       {
@@ -260,7 +279,7 @@
               system = "aarch64-darwin";
             }; [
               common
-              hobby
+              personal
             ];
         };
         anterior = inputs.nix-darwin.lib.darwinSystem {
@@ -271,6 +290,7 @@
             }; [
               common
               linux-builder
+              anterior
             ];
         };
       };
