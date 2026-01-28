@@ -65,12 +65,18 @@
                       # keep-sorted start block=yes
                       bash = {
                         enable = true;
+                        shellOptions = [
+                          "globstar"
+                          "histreedit"
+                          "extglob"
+                        ];
                         historyControl = [
                           "ignorespace"
                           "ignoredups"
                         ];
                         historySize = 1000000;
                         historyFileSize = 1000000;
+                        historyFile = "${config.home.homeDirectory}/.sh_history";
                       };
                       docker-cli.enable = true;
                       emacs = {
