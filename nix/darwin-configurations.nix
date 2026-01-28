@@ -5,9 +5,6 @@
       let
         darwinModules =
           { user, system }:
-          let
-            nocommit = inputs.nocommit.packages.${system}.default;
-          in
           {
             common =
               { pkgs, ... }:
@@ -61,6 +58,7 @@
                     imports = [
                       ../programs/homerow.nix
                       inputs.sops-nix.homeManagerModules.sops
+                      inputs.nocommit.homeModules.default
                     ];
                     xdg.enable = true;
                     programs = {
@@ -128,11 +126,11 @@
                             enabled = true;
                           };
                         };
-                        hooks.pre-commit = lib.getExe nocommit;
                       };
                       home-manager.enable = true;
                       homerow.enable = true;
                       mergiraf.enable = true;
+                      nocommit.enable = true;
                       ssh = {
                         enable = true;
                         enableDefaultConfig = false;
@@ -260,10 +258,6 @@
                   { ... }:
                   {
                     imports = [ ../programs/ensure-jupyter-no-output.nix ];
-                    home.packages = [
-                      # anterior repo's hook expect nocommit to be install globally
-                      nocommit
-                    ];
                     programs = {
                       ensure-jupyter-no-output.enable = true;
                     };

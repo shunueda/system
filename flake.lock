@@ -45,11 +45,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1768949235,
-        "narHash": "sha256-TtjKgXyg1lMfh374w5uxutd6Vx2P/hU81aEhTxrO2cg=",
+        "lastModified": 1769580047,
+        "narHash": "sha256-tNqCP/+2+peAXXQ2V8RwsBkenlfWMERb+Uy6xmevyhM=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "75ed713570ca17427119e7e204ab3590cc3bf2a5",
+        "rev": "366d78c2856de6ab3411c15c1cb4fb4c2bf5c826",
         "type": "github"
       },
       "original": {
@@ -128,15 +128,15 @@
         ]
       },
       "locked": {
-        "lastModified": 1767651088,
-        "narHash": "sha256-UE+YFJ9Et0J7VKYMyupIF6n+jH5ahxTsxM5vdSSnZyQ=",
-        "owner": "nobssoftware",
+        "lastModified": 1769583458,
+        "narHash": "sha256-C5tW8hMVM+quw6Ik48vGcnzHDE79f+qnZHlRKkV/Nyc=",
+        "owner": "shunueda",
         "repo": "nocommit",
-        "rev": "fda6e3b3dc977ee734713390e5f33275daf4d924",
+        "rev": "fd15a48028498fa486e1caf3ac078a8c8f9b985b",
         "type": "github"
       },
       "original": {
-        "owner": "nobssoftware",
+        "owner": "shunueda",
         "repo": "nocommit",
         "type": "github"
       }
@@ -195,11 +195,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1769353635,
-        "narHash": "sha256-J0G1ACrUK29M0THPAsz429eZX07GmR9Bs/b0pB3N0dQ=",
+        "lastModified": 1769515380,
+        "narHash": "sha256-CWWK3PaQ7zhr+Jcf5zyaTR2cfRBXPo09H7+5nWApL8s=",
         "owner": "numtide",
         "repo": "treefmt-nix",
-        "rev": "f46bb205f239b415309f58166f8df6919fa88377",
+        "rev": "9911802c2822def2eec3d22e2cafd1619ede94a5",
         "type": "github"
       },
       "original": {
