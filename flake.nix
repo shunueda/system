@@ -28,13 +28,49 @@
     systems.url = "github:nix-systems/default";
   };
   outputs =
-    { flake-parts, systems, ... }@inputs:
+    {
+      flake-parts,
+      home-manager,
+      systems,
+      treefmt-nix,
+      ...
+    }@inputs:
     flake-parts.lib.mkFlake { inherit inputs; } {
       systems = import systems;
       imports = [
         ./nix/darwin-configurations.nix
         ./nix/treefmt.nix
-        inputs.treefmt-nix.flakeModule
+
+        ./modules/darwin/common.nix
+        treefmt-nix.flakeModule
+        home-manager.flakeModules.home-manager
       ];
+
+      homeModules = {};
+
+      homeConfigurations = {};
+
+      darwinModules = {
+        common = {
+          nix = {};
+          system = {};
+        };
+      };
+
+      darwinConfigurations = {
+        personal = inputs.nix-darwin.lib.darwinSystem {
+          modules = [
+            self.darwinModules.common
+            self.darwinModules.personal
+          ];
+        };
+        anterior = inputs.nix-darwin.lib.darwinSystem {
+          modules = [
+            self.darwinModules.common
+            self.darwinModules.linux-builder
+            self.darwinModules.anterior
+          ];
+        };
+      };
     };
 }
