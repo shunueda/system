@@ -39,11 +39,13 @@
                       KeyRepeat = 1;
                       InitialKeyRepeat = 15;
                     };
+                    WindowManager.StandardHideWidgets = true;
                     dock = {
                       show-recents = false;
                       autohide = true;
                       orientation = "bottom";
                       tilesize = 32;
+                      static-only = true;
                     };
                   };
                   keyboard = {
@@ -131,6 +133,7 @@
                             enabled = true;
                           };
                           pull.rebase = true;
+                          push.autoSetupRemote = true;
                         };
                       };
                       home-manager.enable = true;
