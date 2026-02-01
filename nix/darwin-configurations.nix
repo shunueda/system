@@ -78,7 +78,6 @@
                         historyFileSize = 1000000;
                         historyFile = "${config.home.homeDirectory}/.sh_history";
                       };
-                      docker-cli.enable = true;
                       emacs = {
                         enable = true;
                         extraPackages =
@@ -131,6 +130,7 @@
                             autoupdate = true;
                             enabled = true;
                           };
+                          pull.rebase = true;
                         };
                       };
                       home-manager.enable = true;
@@ -177,11 +177,9 @@
                         gnupg
                         jetbrains-mono
                         maccy
-                        orbstack
                         nixd
                         ocamlPackages.ocaml-lsp
                         sops
-                        typescript
                         typescript-language-server
                       ];
                       file = {
