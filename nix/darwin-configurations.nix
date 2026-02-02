@@ -32,6 +32,7 @@
                 system = {
                   primaryUser = user;
                   stateVersion = 6;
+                  startup.chime = false;
                   defaults = {
                     LaunchServices.LSQuarantine = false;
                     NSGlobalDomain = {
@@ -55,7 +56,7 @@
                         ShowMountedServersOnDesktop = false;
                       };
                       "com.apple.Safari" = {
-                         IncludeDevelopMenu = true;
+                        IncludeDevelopMenu = true;
                       };
                       "com.apple.desktopservices" = {
                         DSDontWriteUSBStores = true;
@@ -65,6 +66,25 @@
                         forceLimitAdTracking = true;
                         allowApplePersonalizedAdvertising = false;
                         allowIdentifierForAdvertising = false;
+                      };
+                    };
+                    CustomUserPreferences = {
+                      "com.apple.HIToolbox" = {
+                        AppleFnUsageType = 1;
+                        AppleEnabledInputSources = [
+                          {
+                            InputSourceKind = "Keyboard Layout";
+                            "KeyboardLayout ID" = 0;
+                            "KeyboardLayout Name" = "U.S.";
+                          }
+                          {
+                            "Bundle ID" = "com.apple.inputmethod.Kotoeri.RomajiTyping";
+                            InputSourceKind = "Keyboard Input Method";
+                          }
+                        ];
+                      };
+                      "com.apple.inputmethod.Kotoeri" = {
+                        JIMPrefLiveConversionKey = 0;
                       };
                     };
                   };
