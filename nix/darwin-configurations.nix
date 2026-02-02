@@ -21,11 +21,8 @@
                   hostPlatform = system;
                   config.allowUnfree = true;
                 };
-                users.knownUsers = [ user ];
                 users.users.${user} = {
-                  uid = 501;
                   home = "/Users/${user}";
-                  shell = pkgs.bash;
                 };
                 home-manager.useGlobalPkgs = true;
                 home-manager.useUserPackages = true;
