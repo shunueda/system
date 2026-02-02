@@ -47,6 +47,26 @@
                       tilesize = 32;
                       static-only = true;
                     };
+                    CustomSystemPreferences = {
+                      "com.apple.finder" = {
+                        ShowHardDrivesOnDesktop = false;
+                        ShowRemovableMediaOnDesktop = false;
+                        ShowExternalHardDrivesOnDesktop = false;
+                        ShowMountedServersOnDesktop = false;
+                      };
+                      "com.apple.Safari" = {
+                         IncludeDevelopMenu = true;
+                      };
+                      "com.apple.desktopservices" = {
+                        DSDontWriteUSBStores = true;
+                        DSDontWriteNetworkStores = true;
+                      };
+                      "com.apple.AdLib" = {
+                        forceLimitAdTracking = true;
+                        allowApplePersonalizedAdvertising = false;
+                        allowIdentifierForAdvertising = false;
+                      };
+                    };
                   };
                   keyboard = {
                     enableKeyMapping = true;
