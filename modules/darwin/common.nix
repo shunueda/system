@@ -1,8 +1,4 @@
 { inputs, pkgs, ... }:
-let
-  # NOMERGE
-  user = "me";
-in
 {
   imports = [ inputs.home-manager.darwinModules.home-manager ];
   nix = {
@@ -18,7 +14,6 @@ in
   home-manager.useGlobalPkgs = true;
   home-manager.useUserPackages = true;
   system = {
-    primaryUser = user;
     stateVersion = 6;
     startup.chime = false;
     defaults = {

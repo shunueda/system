@@ -6,7 +6,9 @@
 }:
 {
   imports = [ flake.modules.home.common ];
+
   home.packages = with pkgs; [ prismlauncher ];
+
   programs = {
     discord.enable = true;
     ssh = {
