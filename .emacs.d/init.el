@@ -184,3 +184,9 @@
 
 (use-package avy
   :ensure t)
+
+(defun ueda/delete-backward-word ()
+  (interactive)
+  (delete-region (point) (progn (backward-word) (point))))
+
+(global-set-key (kbd "C-<backspace>") #'ueda/delete-backward-word)

@@ -4,7 +4,6 @@
     blueprint = {
       url = "github:numtide/blueprint";
       inputs.nixpkgs.follows = "nixpkgs";
-      inputs.systems.follows = "systems";
     };
     home-manager = {
       url = "github:nix-community/home-manager/release-25.11";
@@ -18,14 +17,12 @@
     nocommit = {
       url = "github:shunueda/nocommit";
       inputs.nixpkgs.follows = "nixpkgs";
-      inputs.systems.follows = "systems";
       inputs.treefmt-nix.follows = "treefmt-nix";
     };
     sops-nix = {
       url = "github:mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    systems.url = "github:nix-systems/default";
     treefmt-nix = {
       url = "github:numtide/treefmt-nix";
       inputs.nixpkgs.follows = "nixpkgs";
