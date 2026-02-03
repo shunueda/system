@@ -152,7 +152,7 @@
       sshKeyPaths = [ ];
     };
     gnupg.sshKeyPaths = [ ];
-    defaultSopsFile = ../../secrets.yaml;
+    defaultSopsFile = ../../secrets/default.yaml;
     secrets = {
       id_ed25519_github = { };
       id_ed25519_oyasai = { };
