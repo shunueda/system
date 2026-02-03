@@ -35,7 +35,6 @@
         epkgs: with epkgs; [
           avy
           corfu
-          editorconfig
           exec-path-from-shell
           fzf
           git-gutter
