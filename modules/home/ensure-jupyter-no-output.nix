@@ -1,12 +1,5 @@
-{
-  config,
-  lib,
-  pkgs,
-  ...
-}:
+{ pkgs, ... }:
 let
-  cfg = config.programs.ensure-jupyter-no-output;
-
   ensure-jupyter-no-output = pkgs.writeShellApplication {
     name = "ensure-jupyter-no-output";
     runtimeInputs = with pkgs; [
@@ -26,8 +19,5 @@ let
   };
 in
 {
-  options.programs.ensure-jupyter-no-output = {
-    enable = lib.mkEnableOption "Ensure no jupyter notebook output";
-  };
-  config = lib.mkIf cfg.enable { home.packages = [ ensure-jupyter-no-output ]; };
+  home.packages = [ ensure-jupyter-no-output ];
 }

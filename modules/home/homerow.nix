@@ -1,13 +1,6 @@
 # https://github.com/NixOS/nixpkgs/pull/470905
-{
-  config,
-  lib,
-  pkgs,
-  ...
-}:
+{ pkgs, ... }:
 let
-  cfg = config.programs.homerow;
-
   homerow = pkgs.stdenvNoCC.mkDerivation (finalAttrs: {
     pname = "homerow";
     version = "1.4.1";
@@ -28,9 +21,5 @@ let
   });
 in
 {
-  options.programs.homerow = {
-    enable = lib.mkEnableOption "Keyboard shortcuts for every button in macOS";
-  };
-
-  config = lib.mkIf cfg.enable { home.packages = [ homerow ]; };
+  home.packages = [ homerow ];
 }
