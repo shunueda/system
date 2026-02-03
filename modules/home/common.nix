@@ -9,7 +9,6 @@
   imports = [
     inputs.sops-nix.homeManagerModules.sops
     inputs.nocommit.homeModules.default
-    flake.modules.home.homerow
   ];
   xdg.enable = true;
   programs = {
@@ -85,7 +84,6 @@
       };
     };
     home-manager.enable = true;
-    homerow.enable = true;
     mergiraf.enable = true;
     nocommit.enable = true;
     ssh = {
@@ -121,16 +119,22 @@
   };
   fonts.fontconfig.enable = true;
   home = {
-    packages = with pkgs; [
-      age
-      gnupg
-      jetbrains-mono
-      maccy
-      nixd
-      ocamlPackages.ocaml-lsp
-      sops
-      typescript-language-server
-    ];
+    packages =
+      with pkgs;
+      [
+        age
+        gnupg
+        jetbrains-mono
+        maccy
+        nixd
+        ocamlPackages.ocaml-lsp
+        sops
+        typescript-language-server
+      ]
+      ++ (with flake.packages.${pkgs.stdenv.hostPlatform.system}; [
+        homerow
+        ensure-jupyter-no-output
+      ]);
     file = {
       ".emacs.d" = {
         source = ../../.emacs.d;
