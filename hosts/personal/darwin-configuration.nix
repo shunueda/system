@@ -12,5 +12,5 @@ in
 
   # ‼️ State version must stay at the version originally installed.
   system.stateVersion = 6;
-  users.users.${user}.home.stateVersion = "25.11";
+  home-manager.users.${user}.home.stateVersion = "25.11";
 }
