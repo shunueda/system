@@ -1,4 +1,5 @@
 {
+  flake,
   inputs,
   pkgs,
   config,
@@ -6,9 +7,9 @@
 }:
 {
   imports = [
-    ../../programs/homerow.nix
     inputs.sops-nix.homeManagerModules.sops
     inputs.nocommit.homeModules.default
+    flake.modules.home.homerow
   ];
   xdg.enable = true;
   programs = {

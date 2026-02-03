@@ -1,8 +1,8 @@
 { flake, ... }:
 {
-  imports = [
-    flake.modules.home.common
-    ../../../programs/ensure-jupyter-no-output.nix
+  imports = with flake.modules.home; [
+    common
+    ensure-jupyter-no-output
   ];
   programs = {
     ensure-jupyter-no-output.enable = true;
