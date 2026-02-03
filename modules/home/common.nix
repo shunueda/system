@@ -134,7 +134,7 @@
     ];
     file = {
       ".emacs.d" = {
-        source = ../.emacs.d;
+        source = ../../.emacs.d;
         recursive = true;
       };
       ".hushlogin" = {
@@ -151,7 +151,7 @@
       sshKeyPaths = [ ];
     };
     gnupg.sshKeyPaths = [ ];
-    defaultSopsFile = ../secrets.yaml;
+    defaultSopsFile = ../../secrets.yaml;
     secrets = {
       id_ed25519_github = { };
       id_ed25519_oyasai = { };
