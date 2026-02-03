@@ -1,4 +1,4 @@
-{ inputs, pkgs, ... }:
+{ inputs, ... }:
 {
   imports = [ inputs.home-manager.darwinModules.home-manager ];
   nix = {
@@ -14,7 +14,6 @@
   home-manager.useGlobalPkgs = true;
   home-manager.useUserPackages = true;
   system = {
-    stateVersion = 6;
     startup.chime = false;
     defaults = {
       LaunchServices.LSQuarantine = false;

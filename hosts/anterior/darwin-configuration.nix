@@ -12,4 +12,8 @@ in
   nixpkgs = {
     hostPlatform = "aarch64-darwin";
   };
+
+  # ‼️ State version must stay at the version originally installed.
+  system.stateVersion = 6;
+  users.users.${user}.home.stateVersion = "25.11";
 }
