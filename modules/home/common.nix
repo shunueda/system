@@ -128,6 +128,7 @@
         maccy
         nixd
         ocamlPackages.ocaml-lsp
+        python313Packages.python-lsp-server
         sops
         typescript-language-server
       ]

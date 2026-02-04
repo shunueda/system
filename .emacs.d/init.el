@@ -107,15 +107,22 @@
 (add-to-list 'auto-mode-alist '("\\.tsx\\'" . tsx-ts-mode))
 (add-to-list 'auto-mode-alist '("\\.nix\\'" . nix-ts-mode))
 (add-to-list 'auto-mode-alist '("\\.yaml\\'" . yaml-ts-mode))
+(add-to-list 'auto-mode-alist '("\\.py\\'" . python-ts-mode))
 
 ;; Eglot
-(add-hook 'typescript-ts-mode-hook #'eglot-ensure)
-(add-hook 'tsx-ts-mode-hook #'eglot-ensure)
-(add-hook 'nix-ts-mode-hook #'eglot-ensure)
-(with-eval-after-load 'eglot
+(use-package eglot
+  :ensure t
+  :hook
+  (typescript-ts-mode . eglot-ensure)
+  (tsx-ts-mode . eglot-ensure)
+  (nix-ts-mode . eglot-ensure)
+  (python-ts-mode . eglot-ensure)
+  :config
   (add-to-list 'eglot-server-programs
-               '(nix-ts-mode . ("nixd"))))
-(setq completion-category-overrides '((eglot (styles . (orderless)))))
+               '(nix-ts-mode . ("nixd")))
+  (add-to-list 'eglot-server-programs
+               '(python-ts-mode . ("pylsp")))
+  (setq completion-category-overrides '((eglot (styles . (orderless))))))
 
 (use-package ocaml-eglot
   :ensure t
