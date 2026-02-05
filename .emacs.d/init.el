@@ -178,13 +178,28 @@
 
 (use-package fzf
   :bind
-  (("C-t" . fzf-git))
+  (("C-t" . fzf-git)
+   ("C-r" . fzf-git-grep-fuzzy))
   :config
   (setq fzf/args "-x --color bw --print-query --margin=1,0 --no-hscroll"
         fzf/git-grep-args "-i --line-number %s"
         fzf/grep-command "grep -nrH"
         fzf/position-bottom t
-        fzf/window-height 15))
+        fzf/window-height 15)
+  (defun fzf-git-grep-fuzzy ()
+    (interactive)
+    (let* ((fzf--target-validator (fzf--use-validator
+                                   (function fzf--pass-through)))
+           (fzf--extractor-list (fzf--use-extractor
+                                 (list fzf--file-lnum-regexp 1 2)))
+           (git-root (locate-dominating-file default-directory ".git")))
+      (if git-root
+          (fzf--with-command-and-args
+           "git grep --line-number ."
+           #'fzf--action-find-file-with-line
+           "--delimiter : --nth 3.."
+           git-root)
+        (user-error "Not inside a Git repository")))))
 
 (use-package avy
   :ensure t)

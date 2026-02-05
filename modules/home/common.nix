@@ -5,6 +5,9 @@
   config,
   ...
 }:
+let
+  inherit (pkgs.stdenv.hostPlatform) system;
+in
 {
   imports = [
     inputs.sops-nix.homeManagerModules.sops
@@ -120,22 +123,23 @@
   fonts.fontconfig.enable = true;
   home = {
     packages =
-      with pkgs;
-      [
+      (with pkgs; [
         age
         gnupg
         jetbrains-mono
         maccy
         nixd
         ocamlPackages.ocaml-lsp
+        orbstack
         python313Packages.python-lsp-server
         sops
         typescript-language-server
-      ]
-      ++ (with flake.packages.${pkgs.stdenv.hostPlatform.system}; [
+      ])
+      ++ (with flake.packages.${system}; [
         homerow
         ensure-jupyter-no-output
-      ]);
+      ])
+      ++ [ inputs.noogle-search.packages.${system}.default ];
     file = {
       ".emacs.d" = {
         source = ../../.emacs.d;
