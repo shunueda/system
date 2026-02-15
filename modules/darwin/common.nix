@@ -2,10 +2,15 @@
 {
   imports = [ inputs.home-manager.darwinModules.home-manager ];
   nix = {
-    settings.experimental-features = [
-      "nix-command"
-      "flakes"
-    ];
+    settings = {
+      allow-import-from-derivation = false;
+      experimental-features = [
+        "nix-command"
+        "flakes"
+        "ca-derivations"
+        "dynamic-derivations"
+      ];
+    };
     gc.automatic = true;
   };
   nixpkgs = {
