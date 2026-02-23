@@ -21,8 +21,6 @@ in
 
   config = lib.mkIf cfg.enable {
     home.packages = [ cfg.package ];
-    programs.git.settings = lib.mkIf (cfg.settings.root != null) {
-      ghq.root = cfg.settings.root;
-    };
+    programs.git.settings = lib.mkIf (cfg.settings.root != null) { ghq.root = cfg.settings.root; };
   };
 }

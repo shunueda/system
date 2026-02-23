@@ -41,6 +41,7 @@ in
           exec-path-from-shell
           fzf
           git-gutter
+          ghq
           magit
           nix-ts-mode
           ocaml-eglot
