@@ -138,8 +138,7 @@ in
       ++ (with flake.packages.${system}; [
         homerow
         ensure-jupyter-no-output
-      ])
-      ++ [ inputs.noogle-search.packages.${system}.default ];
+      ]);
     file = {
       ".emacs.d" = {
         source = ../../.emacs.d;
@@ -148,9 +147,6 @@ in
       ".hushlogin" = {
         text = "";
       };
-    };
-    sessionVariables = {
-      EDITOR = "emacs";
     };
   };
   sops = {
