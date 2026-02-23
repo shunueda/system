@@ -12,6 +12,7 @@ in
   imports = [
     inputs.sops-nix.homeManagerModules.sops
     inputs.nocommit.homeModules.default
+    flake.homeModules.ghq
   ];
   xdg.enable = true;
   programs = {
@@ -59,6 +60,12 @@ in
         link-previews = true;
         mouse-hide-while-typing = true;
         window-save-state = "always";
+      };
+    };
+    ghq = {
+      enable = true;
+      settings = {
+        root = "${config.home.homeDirectory}/code";
       };
     };
     git = {
