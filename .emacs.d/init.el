@@ -110,6 +110,11 @@
 (add-to-list 'auto-mode-alist '("\\.py\\'" . python-ts-mode))
 (add-to-list 'auto-mode-alist '("\\.json\\'" . json-ts-mode))
 
+;; Tuareg
+(use-package tuareg
+  :ensure t
+  :mode (("\\.ocamlinit\\'" . tuareg-mode)))
+
 ;; Eglot
 (use-package eglot
   :ensure t
@@ -170,6 +175,11 @@
 ;; exec-path-from-shell
 (when (memq window-system '(mac ns x))
   (exec-path-from-shell-initialize))
+
+(use-package direnv
+  :ensure t
+  :config
+  (direnv-mode))
 
 ;; Undo tree
 (use-package undo-tree
