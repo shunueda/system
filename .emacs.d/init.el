@@ -149,12 +149,6 @@
   :init
   (global-corfu-mode))
 
-;; Corfu popup info
-(use-package corfu-popupinfo
-  :after corfu
-  :init
-  (corfu-popupinfo-mode))
-
 ;; Git gutter
 (global-git-gutter-mode t)
 (custom-set-variables
