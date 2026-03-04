@@ -10,8 +10,9 @@ let
 in
 {
   imports = [
-    inputs.sops-nix.homeManagerModules.sops
+    inputs.direnv-instant.homeModules.direnv-instant
     inputs.nocommit.homeModules.default
+    inputs.sops-nix.homeManagerModules.sops
     flake.homeModules.ghq
   ];
   xdg.enable = true;
@@ -32,7 +33,11 @@ in
       historyFileSize = 1000000;
       historyFile = "${config.home.homeDirectory}/.sh_history";
     };
-    direnv.enable = true;
+    direnv = {
+      enable = true;
+      nix-direnv.enable = true;
+    };
+    direnv-instant.enable = true;
     emacs = {
       enable = true;
       extraPackages =
