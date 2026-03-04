@@ -137,6 +137,12 @@
   (tuareg-mode . ocaml-eglot)
   (ocaml-eglot . eglot-ensure))
 
+(use-package smartparens
+  :ensure t
+  :hook (typescript-ts-mode tsx-ts-mode nix-ts-mode python-ts-mode)
+  :config
+  (require 'smartparens-config))
+
 ;; Editorconfig
 (editorconfig-mode 1)
 

@@ -54,6 +54,7 @@ in
           magit
           nix-ts-mode
           ocaml-eglot
+          smartparens
           treesit-grammars.with-all-grammars
           tuareg
           undo-tree
