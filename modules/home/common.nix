@@ -140,12 +140,8 @@ in
         gnupg
         jetbrains-mono
         maccy
-        nixd
-        ocamlPackages.ocaml-lsp
         orbstack
-        python313Packages.python-lsp-server
         sops
-        typescript-language-server
       ])
       ++ (with flake.packages.${system}; [
         homerow
