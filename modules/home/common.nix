@@ -32,13 +32,16 @@ in
       historyFileSize = 1000000;
       historyFile = "${config.home.homeDirectory}/.sh_history";
     };
+    direnv.enable = true;
     emacs = {
       enable = true;
       extraPackages =
         epkgs: with epkgs; [
           avy
           corfu
-          direnv
+          (direnv.overrideAttrs (prev: {
+            patches = (prev.patches or [ ]) ++ [ ../../patches/emacs-direnv.patch ];
+          }))
           exec-path-from-shell
           fzf
           git-gutter
@@ -53,7 +56,6 @@ in
           zenburn-theme
         ];
     };
-    direnv.enable = true;
     fzf.enable = true;
     ghostty = {
       enable = true;
