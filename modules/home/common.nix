@@ -38,6 +38,7 @@ in
         epkgs: with epkgs; [
           avy
           corfu
+          direnv
           exec-path-from-shell
           fzf
           git-gutter
@@ -52,6 +53,7 @@ in
           zenburn-theme
         ];
     };
+    direnv.enable = true;
     fzf.enable = true;
     ghostty = {
       enable = true;
