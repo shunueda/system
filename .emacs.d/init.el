@@ -139,12 +139,15 @@
 
 (use-package smartparens
   :ensure t
-  :hook (typescript-ts-mode tsx-ts-mode nix-ts-mode python-ts-mode)
+  :hook (typescript-ts-mode tsx-ts-mode nix-ts-mode python-ts-mode emacs-lisp-mode)
   :config
   (require 'smartparens-config))
 
 ;; Editorconfig
-(editorconfig-mode 1)
+(use-package editorconfig
+  :ensure t
+  :config
+  (editorconfig-mode 1))
 
 ;; Vertico
 (use-package vertico
@@ -213,7 +216,9 @@
         (user-error "Not inside a Git repository")))))
 
 (use-package avy
-  :ensure t)
+  :ensure t
+  :config
+  (global-set-key (kbd "C-'") 'avy-goto-char-2))
 
 (defun ueda/delete-backward-word ()
   (interactive)
