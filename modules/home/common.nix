@@ -2,6 +2,7 @@
   flake,
   inputs,
   pkgs,
+  pkgsUnstable,
   config,
   ...
 }:
@@ -14,6 +15,7 @@ in
     inputs.nocommit.homeModules.default
     inputs.sops-nix.homeManagerModules.sops
     flake.homeModules.ghq
+    flake.modules.common.nixpkgs-unstable
   ];
   xdg.enable = true;
   programs = {
@@ -60,6 +62,7 @@ in
           undo-tree
           vertico
           zenburn-theme
+          flake.packages.${system}.majutsu
         ];
     };
     fzf.enable = true;
@@ -105,6 +108,16 @@ in
       };
     };
     home-manager.enable = true;
+    jujutsu = {
+      enable = true;
+      package = pkgsUnstable.jujutsu;
+      settings = {
+        user = {
+          name = "Shun Ueda";
+          email = "me@shu.nu";
+        };
+      };
+    };
     mergiraf.enable = true;
     nocommit.enable = true;
     ssh = {

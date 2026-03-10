@@ -177,6 +177,22 @@
         "type": "github"
       }
     },
+    "nixpkgs-unstable": {
+      "locked": {
+        "lastModified": 1772956932,
+        "narHash": "sha256-M0yS4AafhKxPPmOHGqIV0iKxgNO8bHDWdl1kOwGBwRY=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "608d0cadfed240589a7eea422407a547ad626a14",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "ref": "nixpkgs-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "nocommit": {
       "inputs": {
         "flake-parts": "flake-parts_2",
@@ -210,6 +226,7 @@
         "home-manager": "home-manager",
         "nix-darwin": "nix-darwin",
         "nixpkgs": "nixpkgs",
+        "nixpkgs-unstable": "nixpkgs-unstable",
         "nocommit": "nocommit",
         "sops-nix": "sops-nix",
         "treefmt-nix": "treefmt-nix"
