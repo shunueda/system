@@ -111,11 +111,9 @@ in
     jujutsu = {
       enable = true;
       package = pkgsUnstable.jujutsu;
-      settings = {
-        user = {
-          name = "Shun Ueda";
-          email = "me@shu.nu";
-        };
+      settings.user = {
+        name = "Shun Ueda";
+        email = "me@shu.nu";
       };
     };
     mergiraf.enable = true;
