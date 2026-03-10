@@ -225,3 +225,5 @@
   (delete-region (point) (progn (backward-word) (point))))
 
 (global-set-key (kbd "C-<backspace>") #'ueda/delete-backward-word)
+
+(global-set-key (kbd "s-q") nil)
