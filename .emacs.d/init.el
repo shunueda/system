@@ -227,3 +227,6 @@
 (global-set-key (kbd "C-<backspace>") #'ueda/delete-backward-word)
 
 (global-set-key (kbd "s-q") nil)
+
+(global-unset-key [C-wheel-up])
+(global-unset-key [C-wheel-down])
