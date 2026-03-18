@@ -10,6 +10,7 @@
         "ca-derivations"
         "dynamic-derivations"
       ];
+      sandbox = true;
     };
     gc.automatic = true;
   };
