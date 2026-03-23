@@ -2,7 +2,7 @@
   flake,
   inputs,
   pkgs,
-  pkgsUnstable,
+  pkgs-unstable,
   config,
   ...
 }:
@@ -66,51 +66,16 @@ in
         ];
     };
     fzf.enable = true;
-    ghostty = {
-      enable = true;
-      package = pkgs.ghostty-bin;
-      settings = {
-        auto-update = "off";
-        link-previews = true;
-        mouse-hide-while-typing = true;
-        window-save-state = "always";
-      };
-    };
     ghq = {
       enable = true;
       settings = {
         root = "${config.home.homeDirectory}/code";
       };
     };
-    git = {
-      enable = true;
-      settings = {
-        init = {
-          defaultBranch = "master";
-        };
-        user = {
-          name = "Shun Ueda";
-          email = "me@shu.nu";
-        };
-        diff.algorithm = "histogram";
-        rebase = {
-          autosquash = true;
-          autostash = true;
-          stat = true;
-        };
-        merge.directoryRenames = true;
-        rerere = {
-          autoupdate = true;
-          enabled = true;
-        };
-        pull.rebase = true;
-        push.autoSetupRemote = true;
-      };
-    };
     home-manager.enable = true;
     jujutsu = {
       enable = true;
-      package = pkgsUnstable.jujutsu;
+      package = pkgs-unstable.jujutsu;
       settings.user = {
         name = "Shun Ueda";
         email = "me@shu.nu";
@@ -118,16 +83,6 @@ in
     };
     mergiraf.enable = true;
     nocommit.enable = true;
-    ssh = {
-      enable = true;
-      enableDefaultConfig = false;
-      matchBlocks = {
-        "github.com" = {
-          user = "git";
-          identityFile = config.sops.secrets.id_ed25519_github.path;
-        };
-      };
-    };
     starship = {
       enable = true;
       settings = {
@@ -156,10 +111,10 @@ in
         age
         gnupg
         jetbrains-mono
-        maccy
-        orbstack
+        nix-diff
         sops
       ])
+      ++ (with pkgs-unstable; [ lima ])
       ++ (with flake.packages.${system}; [
         homerow
         ensure-jupyter-no-output
@@ -172,18 +127,6 @@ in
       ".hushlogin" = {
         text = "";
       };
-    };
-  };
-  sops = {
-    age = {
-      keyFile = "${config.xdg.configHome}/sops/age/keys.txt";
-      sshKeyPaths = [ ];
-    };
-    gnupg.sshKeyPaths = [ ];
-    defaultSopsFile = ../../secrets/default.yaml;
-    secrets = {
-      id_ed25519_github = { };
-      id_ed25519_oyasai = { };
     };
   };
 }

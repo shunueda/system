@@ -95,4 +95,70 @@
     };
   };
   security.pam.services.sudo_local.touchIdAuth = true;
+
+  # TODO move this to homemodule
+  programs = {
+    ghostty = {
+      enable = true;
+      package = pkgs.ghostty-bin;
+      settings = {
+        auto-update = "off";
+        link-previews = true;
+        mouse-hide-while-typing = true;
+        window-save-state = "always";
+      };
+    };
+    git = {
+      enable = true;
+      settings = {
+        init = {
+          defaultBranch = "master";
+        };
+        user = {
+          name = "Shun Ueda";
+          email = "me@shu.nu";
+        };
+        diff.algorithm = "histogram";
+        rebase = {
+          autosquash = true;
+          autostash = true;
+          stat = true;
+        };
+        merge.directoryRenames = true;
+        rerere = {
+          autoupdate = true;
+          enabled = true;
+        };
+        pull.rebase = true;
+        push.autoSetupRemote = true;
+      };
+    };
+    ssh = {
+      enable = true;
+      enableDefaultConfig = false;
+      matchBlocks = {
+        "github.com" = {
+          user = "git";
+          identityFile = config.sops.secrets.id_ed25519_github.path;
+        };
+      };
+    };
+  };
+  home.packages = with pkgs; [
+    maccy
+    orbstack
+  ];
+  sops = {
+    age = {
+      keyFile = "${config.xdg.configHome}/sops/age/keys.txt";
+      sshKeyPaths = [ ];
+    };
+    gnupg.sshKeyPaths = [ ];
+    defaultSopsFile = ../../secrets/default.yaml;
+    secrets = {
+      id_ed25519_github = { };
+      id_ed25519_oyasai = { };
+    };
+  };
+
 }
