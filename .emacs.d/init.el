@@ -32,6 +32,8 @@
       ;; Silence compiler warnings as they can be pretty disruptive
       native-comp-async-report-warnings-errors nil
 
+      visible-bell t
+
       ;; Enable custom file
       custom-file (concat user-emacs-directory "custom.el"))
 
@@ -61,9 +63,6 @@
 ;; Tabs to spaces
 (setq-default indent-tabs-mode nil
 	            tab-width 2)
-
-;; Delete trailing whitespace before saving buffers
-(add-hook 'before-save-hook 'delete-trailing-whitespace)
 
 (setopt tab-always-indent 'complete
         read-buffer-completion-ignore-case t

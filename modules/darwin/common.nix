@@ -7,8 +7,6 @@
       experimental-features = [
         "nix-command"
         "flakes"
-        "ca-derivations"
-        "dynamic-derivations"
       ];
       sandbox = true;
     };

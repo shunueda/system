@@ -2,10 +2,10 @@
 { pkgs, ... }:
 pkgs.stdenvNoCC.mkDerivation (finalAttrs: {
   pname = "homerow";
-  version = "1.4.1";
+  version = "1.5.3";
   src = pkgs.fetchzip {
     url = "https://builds.homerow.app/v${finalAttrs.version}/Homerow.zip";
-    hash = "sha256-tvFZE8lOdyJ+D5T/93c3tiZzA6TbFGWtOghEyoCFYuc=";
+    hash = "sha256-zqa1QYq7UF80z0cvMZJMgTQFo3vqGdwzuLVMwgyuMME=";
     stripRoot = false;
   };
 
