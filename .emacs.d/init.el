@@ -226,6 +226,8 @@
 (global-set-key (kbd "C-<backspace>") #'ueda/delete-backward-word)
 
 (global-set-key (kbd "s-q") nil)
+(global-set-key (kbd "C-x C-c") nil)
+
 (global-set-key (kbd "C-x m") 'majutsu)
 
 (global-unset-key [C-wheel-up])
