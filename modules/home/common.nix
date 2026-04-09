@@ -37,6 +37,9 @@
         };
         direnv = {
           enable = true;
+          package = pkgs.direnv.overrideAttrs (_: {
+            doCheck = false;
+          });
           nix-direnv.enable = true;
         };
         direnv-instant.enable = true;
@@ -46,6 +49,7 @@
             epkgs: with epkgs; [
               avy
               corfu
+              # https://github.com/NixOS/nixpkgs/issues/507531
               (direnv.overrideAttrs (prev: {
                 patches = (prev.patches or [ ]) ++ [ ../../patches/emacs-direnv.patch ];
               }))
@@ -155,7 +159,6 @@
           (with pkgs; [
             age
             gnupg
-            jetbrains-mono
             maccy
             orbstack
             sops
@@ -164,6 +167,10 @@
           ++ (with self.packages.${system}; [
             homerow
             ensure-jupyter-no-output
+          ])
+          ++ (with inputs.nixpkgs-unstable.legacyPackages.${system}; [
+            # Only build on unstable because of some ffmpeg-python issue
+            jetbrains-mono
           ]);
         file = {
           ".emacs.d" = {
