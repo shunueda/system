@@ -42,7 +42,6 @@
     };
     # keep-sorted end
   };
-
   outputs =
     inputs@{ flake-parts, ... }:
     flake-parts.lib.mkFlake { inherit inputs; } {
@@ -55,10 +54,8 @@
         ./modules/darwin/linux-builder.nix
         ./modules/home/common.nix
         ./modules/home/ghq.nix
+        ./nix/misc.nix
         ./nix/treefmt.nix
-        ./packages/ensure-jupyter-no-output.nix
-        ./packages/homerow.nix
-        ./packages/majutsu.nix
         inputs.home-manager.flakeModules.home-manager
         inputs.nix-darwin-flake-module.flakeModules.default
         inputs.treefmt-nix.flakeModule
