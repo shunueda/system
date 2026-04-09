@@ -1,11 +1,11 @@
 {
-  flake,
+  self,
   config,
   pkgs,
   ...
 }:
 {
-  imports = [ flake.modules.home.common ];
+  imports = [ self.homeModules.common ];
 
   home.packages = with pkgs; [ prismlauncher ];
 

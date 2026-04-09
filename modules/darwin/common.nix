@@ -1,96 +1,100 @@
 { inputs, ... }:
 {
-  imports = [ inputs.home-manager.darwinModules.home-manager ];
-  nix = {
-    settings = {
-      allow-import-from-derivation = false;
-      experimental-features = [
-        "nix-command"
-        "flakes"
-      ];
-      sandbox = true;
-    };
-    gc.automatic = true;
-  };
-  nixpkgs = {
-    config.allowUnfree = true;
-    overlays = [
-      (final: prev: {
-        ghostty-bin = prev.ghostty-bin.overrideAttrs (
-          finalAttrs: _prev: {
-            version = "1.3.0";
-            src = final.fetchurl {
-              url = "https://release.files.ghostty.org/${finalAttrs.version}/Ghostty.dmg";
-              hash = "sha256-U/6Y5wmCEYAIwDuf2/XfJlUip/22vfoY630NTNMdDMU=";
-            };
-          }
-        );
-      })
-    ];
-  };
-  home-manager.useGlobalPkgs = true;
-  home-manager.useUserPackages = true;
-  system = {
-    startup.chime = false;
-    defaults = {
-      LaunchServices.LSQuarantine = false;
-      NSGlobalDomain = {
-        AppleShowAllExtensions = true;
-        KeyRepeat = 1;
-        InitialKeyRepeat = 15;
-      };
-      WindowManager.StandardHideWidgets = true;
-      dock = {
-        show-recents = false;
-        autohide = true;
-        orientation = "bottom";
-        tilesize = 32;
-        static-only = true;
-      };
-      CustomSystemPreferences = {
-        "com.apple.finder" = {
-          ShowHardDrivesOnDesktop = false;
-          ShowRemovableMediaOnDesktop = false;
-          ShowExternalHardDrivesOnDesktop = false;
-          ShowMountedServersOnDesktop = false;
-        };
-        "com.apple.Safari" = {
-          IncludeDevelopMenu = true;
-        };
-        "com.apple.desktopservices" = {
-          DSDontWriteUSBStores = true;
-          DSDontWriteNetworkStores = true;
-        };
-        "com.apple.AdLib" = {
-          forceLimitAdTracking = true;
-          allowApplePersonalizedAdvertising = false;
-          allowIdentifierForAdvertising = false;
-        };
-      };
-      CustomUserPreferences = {
-        "com.apple.HIToolbox" = {
-          AppleFnUsageType = 1;
-          AppleEnabledInputSources = [
-            {
-              InputSourceKind = "Keyboard Layout";
-              "KeyboardLayout ID" = 0;
-              "KeyboardLayout Name" = "U.S.";
-            }
-            {
-              "Bundle ID" = "com.apple.inputmethod.Kotoeri.RomajiTyping";
-              InputSourceKind = "Keyboard Input Method";
-            }
+  flake.darwinModules.common =
+    { ... }:
+    {
+      imports = [ inputs.home-manager.darwinModules.home-manager ];
+      nix = {
+        settings = {
+          allow-import-from-derivation = false;
+          experimental-features = [
+            "nix-command"
+            "flakes"
           ];
+          sandbox = true;
         };
-        "com.apple.inputmethod.Kotoeri" = {
-          JIMPrefLiveConversionKey = 0;
+        gc.automatic = true;
+      };
+      nixpkgs = {
+        config.allowUnfree = true;
+        overlays = [
+          (final: prev: {
+            ghostty-bin = prev.ghostty-bin.overrideAttrs (
+              finalAttrs: _prev: {
+                version = "1.3.0";
+                src = final.fetchurl {
+                  url = "https://release.files.ghostty.org/${finalAttrs.version}/Ghostty.dmg";
+                  hash = "sha256-U/6Y5wmCEYAIwDuf2/XfJlUip/22vfoY630NTNMdDMU=";
+                };
+              }
+            );
+          })
+        ];
+      };
+      home-manager.useGlobalPkgs = true;
+      home-manager.useUserPackages = true;
+      system = {
+        startup.chime = false;
+        defaults = {
+          LaunchServices.LSQuarantine = false;
+          NSGlobalDomain = {
+            AppleShowAllExtensions = true;
+            KeyRepeat = 1;
+            InitialKeyRepeat = 15;
+          };
+          WindowManager.StandardHideWidgets = true;
+          dock = {
+            show-recents = false;
+            autohide = true;
+            orientation = "bottom";
+            tilesize = 32;
+            static-only = true;
+          };
+          CustomSystemPreferences = {
+            "com.apple.finder" = {
+              ShowHardDrivesOnDesktop = false;
+              ShowRemovableMediaOnDesktop = false;
+              ShowExternalHardDrivesOnDesktop = false;
+              ShowMountedServersOnDesktop = false;
+            };
+            "com.apple.Safari" = {
+              IncludeDevelopMenu = true;
+            };
+            "com.apple.desktopservices" = {
+              DSDontWriteUSBStores = true;
+              DSDontWriteNetworkStores = true;
+            };
+            "com.apple.AdLib" = {
+              forceLimitAdTracking = true;
+              allowApplePersonalizedAdvertising = false;
+              allowIdentifierForAdvertising = false;
+            };
+          };
+          CustomUserPreferences = {
+            "com.apple.HIToolbox" = {
+              AppleFnUsageType = 1;
+              AppleEnabledInputSources = [
+                {
+                  InputSourceKind = "Keyboard Layout";
+                  "KeyboardLayout ID" = 0;
+                  "KeyboardLayout Name" = "U.S.";
+                }
+                {
+                  "Bundle ID" = "com.apple.inputmethod.Kotoeri.RomajiTyping";
+                  InputSourceKind = "Keyboard Input Method";
+                }
+              ];
+            };
+            "com.apple.inputmethod.Kotoeri" = {
+              JIMPrefLiveConversionKey = 0;
+            };
+          };
+        };
+        keyboard = {
+          enableKeyMapping = true;
+          remapCapsLockToControl = true;
         };
       };
+      security.pam.services.sudo_local.touchIdAuth = true;
     };
-    keyboard = {
-      enableKeyMapping = true;
-      remapCapsLockToControl = true;
-    };
-  };
-  security.pam.services.sudo_local.touchIdAuth = true;
 }

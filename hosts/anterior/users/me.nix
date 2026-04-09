@@ -1,4 +1,4 @@
-{ flake, ... }:
+{ self, ... }:
 {
-  imports = with flake.modules.home; [ common ];
+  imports = [ self.homeModules.common ];
 }
