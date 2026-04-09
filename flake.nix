@@ -7,6 +7,11 @@
       inputs.treefmt-nix.follows = "treefmt-nix";
       inputs.flake-parts.follows = "flake-parts";
     };
+    # Patch for emacs-direnv that doesn't block the editor while loading
+    emacs-direnv-async = {
+      url = "github:wbolster/emacs-direnv/pull/82/head";
+      flake = false;
+    };
     flake-parts = {
       url = "github:hercules-ci/flake-parts";
       inputs.nixpkgs-lib.follows = "nixpkgs";

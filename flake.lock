@@ -26,6 +26,23 @@
         "type": "github"
       }
     },
+    "emacs-direnv-async": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1711563026,
+        "narHash": "sha256-DhhXJ/hxlKeFx3xgRlIClMTu+iyGz++sr9HDj+72VKs=",
+        "owner": "wbolster",
+        "repo": "emacs-direnv",
+        "rev": "3d695c59cad7a0f5ac22075c08aef4f0480a94c9",
+        "type": "github"
+      },
+      "original": {
+        "owner": "wbolster",
+        "ref": "pull/82/head",
+        "repo": "emacs-direnv",
+        "type": "github"
+      }
+    },
     "flake-parts": {
       "inputs": {
         "nixpkgs-lib": [
@@ -194,6 +211,7 @@
     "root": {
       "inputs": {
         "direnv-instant": "direnv-instant",
+        "emacs-direnv-async": "emacs-direnv-async",
         "flake-parts": "flake-parts",
         "home-manager": "home-manager",
         "nix-darwin": "nix-darwin",

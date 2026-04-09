@@ -51,7 +51,7 @@
               corfu
               # https://github.com/NixOS/nixpkgs/issues/507531
               (direnv.overrideAttrs (prev: {
-                patches = (prev.patches or [ ]) ++ [ ../../patches/emacs-direnv.patch ];
+                src = inputs.emacs-direnv-async;
               }))
               exec-path-from-shell
               fzf
