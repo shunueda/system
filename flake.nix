@@ -27,6 +27,7 @@
     nix-darwin-flake-module.inputs.nixpkgs.follows = "nixpkgs";
     # For flakeModules for darwinModules and darwinConfigurations
     nix-darwin-flake-module.url = "github:nix-darwin/nix-darwin/pull/1690/head";
+    nixpkgs-steam.url = "github:nixos/nixpkgs/pull/499915/head";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixpkgs-unstable";
     nixpkgs.url = "github:nixos/nixpkgs/nixos-25.11";
     nocommit = {

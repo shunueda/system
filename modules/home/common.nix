@@ -163,6 +163,7 @@
             orbstack
             sops
             nixd
+            # inputs.nixpkgs-steam.legacyPackages.${system}.steam
           ])
           ++ (with self.packages.${system}; [
             homerow
