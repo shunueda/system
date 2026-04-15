@@ -37,6 +37,7 @@
         };
         direnv = {
           enable = true;
+          # https://github.com/NixOS/nixpkgs/issues/507531
           package = pkgs.direnv.overrideAttrs (_: {
             doCheck = false;
           });
@@ -49,7 +50,6 @@
             epkgs: with epkgs; [
               avy
               corfu
-              # https://github.com/NixOS/nixpkgs/issues/507531
               (direnv.overrideAttrs (prev: {
                 src = inputs.emacs-direnv-async;
               }))

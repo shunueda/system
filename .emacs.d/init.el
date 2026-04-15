@@ -108,6 +108,7 @@
 (add-to-list 'auto-mode-alist '("\\.yaml\\'" . yaml-ts-mode))
 (add-to-list 'auto-mode-alist '("\\.py\\'" . python-ts-mode))
 (add-to-list 'auto-mode-alist '("\\.json\\'" . json-ts-mode))
+(add-to-list 'auto-mode-alist '("\\.go\\'" . go-ts-mode))
 
 ;; Tuareg
 (use-package tuareg
@@ -122,11 +123,14 @@
   (tsx-ts-mode . eglot-ensure)
   (nix-ts-mode . eglot-ensure)
   (python-ts-mode . eglot-ensure)
+  (go-ts-mode . eglot-ensure)
   :config
   (add-to-list 'eglot-server-programs
                '(nix-ts-mode . ("nixd")))
   (add-to-list 'eglot-server-programs
                '(python-ts-mode . ("pylsp")))
+  (add-to-list 'eglot-server-programs
+               '(go-ts-mode . ("gopls")))
   (setq completion-category-overrides '((eglot (styles . (orderless))))))
 
 (use-package ocaml-eglot

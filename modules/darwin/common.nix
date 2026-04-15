@@ -11,25 +11,12 @@
             "nix-command"
             "flakes"
           ];
-          sandbox = true;
         };
         gc.automatic = true;
       };
       nixpkgs = {
         config.allowUnfree = true;
-        overlays = [
-          (final: prev: {
-            ghostty-bin = prev.ghostty-bin.overrideAttrs (
-              finalAttrs: _prev: {
-                version = "1.3.0";
-                src = final.fetchurl {
-                  url = "https://release.files.ghostty.org/${finalAttrs.version}/Ghostty.dmg";
-                  hash = "sha256-U/6Y5wmCEYAIwDuf2/XfJlUip/22vfoY630NTNMdDMU=";
-                };
-              }
-            );
-          })
-        ];
+        overlays = [ ];
       };
       home-manager.useGlobalPkgs = true;
       home-manager.useUserPackages = true;
