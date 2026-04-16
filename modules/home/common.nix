@@ -163,7 +163,12 @@
             orbstack
             sops
             nixd
-            # inputs.nixpkgs-steam.legacyPackages.${system}.steam
+            # BRUH fix later im too lazy
+            ((import inputs.nixpkgs-steam {
+              config.allowUnfree = true;
+              inherit system;
+            }).steam
+            )
           ])
           ++ (with self.packages.${system}; [
             homerow

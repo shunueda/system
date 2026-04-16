@@ -11,6 +11,7 @@
             "nix-command"
             "flakes"
           ];
+          sandbox = false;
         };
         gc.automatic = true;
       };
