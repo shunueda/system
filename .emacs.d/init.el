@@ -109,6 +109,8 @@
 (add-to-list 'auto-mode-alist '("\\.py\\'" . python-ts-mode))
 (add-to-list 'auto-mode-alist '("\\.json\\'" . json-ts-mode))
 (add-to-list 'auto-mode-alist '("\\.go\\'" . go-ts-mode))
+(add-to-list 'auto-mode-alist '("\\.kt\\'" . kotlin-ts-mode))
+(add-to-list 'auto-mode-alist '("\\.kts\\'" . kotlin-ts-mode))
 
 ;; Tuareg
 (use-package tuareg
@@ -131,6 +133,8 @@
                '(python-ts-mode . ("pylsp")))
   (add-to-list 'eglot-server-programs
                '(go-ts-mode . ("gopls")))
+    (add-to-list 'eglot-server-programs
+               '(kotlin-ts-mode . ("kotlin-language-server")))
   (setq completion-category-overrides '((eglot (styles . (orderless))))))
 
 (use-package ocaml-eglot
@@ -142,9 +146,9 @@
 
 (use-package smartparens
   :ensure t
-  :hook (typescript-ts-mode tsx-ts-mode nix-ts-mode python-ts-mode emacs-lisp-mode)
   :config
-  (require 'smartparens-config))
+  (require 'smartparens-config)
+  (smartparens-global-mode 1))
 
 ;; Editorconfig
 (use-package editorconfig

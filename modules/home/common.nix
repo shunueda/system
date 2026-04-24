@@ -62,7 +62,9 @@
               ocaml-eglot
               smartparens
               treesit-grammars.with-all-grammars
+              kotlin-ts-mode
               tuareg
+              multiple-cursors
               undo-tree
               vertico
               zenburn-theme
