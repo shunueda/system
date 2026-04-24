@@ -231,7 +231,11 @@
   (interactive)
   (delete-region (point) (progn (backward-word) (point))))
 
-(global-set-key (kbd "C-<backspace>") #'ueda/delete-backward-word)
+;; TODO  I probably don't need all these
+(global-set-key (kbd "M-<backspace>") #'ueda/delete-backward-word)
+(global-set-key (kbd "ESC <trash>") 'ueda/delete-backward-word)
+(global-set-key (kbd "M-DEL") 'ueda/delete-backward-word)
+(global-set-key (kbd "ESC <backspace>") 'ueda/delete-backward-word)
 
 (global-set-key (kbd "s-q") nil)
 (global-set-key (kbd "C-x C-c") nil)

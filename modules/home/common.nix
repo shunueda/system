@@ -20,6 +20,25 @@
       xdg.enable = true;
       programs = {
         # keep-sorted start block=yes
+        alacritty = {
+          enable = true;
+          settings = {
+            window = {
+              padding = {
+                x = 10;
+                y = 10;
+              };
+              decorations = "Buttonless";
+            };
+            font = {
+              normal = {
+                family = "JetBrains Mono";
+                style = "Regular";
+              };
+              size = 13;
+            };
+          };
+        };
         bash = {
           enable = true;
           shellOptions = [
@@ -72,16 +91,6 @@
             ];
         };
         fzf.enable = true;
-        ghostty = {
-          enable = true;
-          package = pkgs.ghostty-bin;
-          settings = {
-            auto-update = "off";
-            link-previews = true;
-            mouse-hide-while-typing = true;
-            window-save-state = "always";
-          };
-        };
         ghq = {
           enable = true;
           settings = {
