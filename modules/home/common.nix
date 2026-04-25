@@ -16,12 +16,14 @@
         inputs.nocommit.homeModules.default
         inputs.sops-nix.homeManagerModules.sops
         self.homeModules.ghq
+        self.homeModules.screen
       ];
       xdg.enable = true;
       programs = {
         # keep-sorted start block=yes
         alacritty = {
           enable = true;
+          theme = "ayu_light";
           settings = {
             window = {
               padding = {
@@ -133,6 +135,10 @@
         };
         mergiraf.enable = true;
         nocommit.enable = true;
+        screen = {
+          enable = true;
+          screenrc = "";
+        };
         ssh = {
           enable = true;
           enableDefaultConfig = false;

@@ -67,6 +67,7 @@
         ./modules/darwin/linux-builder.nix
         ./modules/home/common.nix
         ./modules/home/ghq.nix
+        ./modules/home/screen.nix
         ./nix/misc.nix
         ./nix/treefmt.nix
         inputs.home-manager.flakeModules.home-manager
