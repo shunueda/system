@@ -5,6 +5,7 @@
       self,
       pkgs,
       config,
+      lib,
       ...
     }:
     let
@@ -23,14 +24,13 @@
         # keep-sorted start block=yes
         alacritty = {
           enable = true;
-          theme = "ayu_light";
+          theme = "alabaster";
           settings = {
             window = {
               padding = {
                 x = 10;
                 y = 10;
               };
-              decorations = "Buttonless";
             };
             font = {
               normal = {
@@ -128,9 +128,18 @@
         jujutsu = {
           enable = true;
           package = inputs.nixpkgs-unstable.legacyPackages.${system}.jujutsu;
-          settings.user = {
-            name = "Shun Ueda";
-            email = "me@shu.nu";
+          settings = {
+            user = {
+              name = "Shun Ueda";
+              email = "me@shu.nu";
+            };
+            remotes.origin.auto-track-bookmarks = "*";
+            ui.merge-editor = "mergiraf";
+            merge-tools = {
+              mergiraf = {
+                program = lib.getExe config.programs.mergiraf.package;
+              };
+            };
           };
         };
         mergiraf.enable = true;
