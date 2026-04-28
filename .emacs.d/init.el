@@ -244,3 +244,7 @@
 
 (global-unset-key [C-wheel-up])
 (global-unset-key [C-wheel-down])
+
+;; (setq ns-option-modifier 'none)
+;; (setq ns-right-option-modifier 'none)
+(setq ns-command-modifier 'none)
