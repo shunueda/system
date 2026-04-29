@@ -58,10 +58,6 @@
         };
         direnv = {
           enable = true;
-          # https://github.com/NixOS/nixpkgs/issues/507531
-          package = pkgs.direnv.overrideAttrs (_: {
-            doCheck = false;
-          });
           nix-direnv.enable = true;
         };
         direnv-instant.enable = true;
@@ -127,7 +123,6 @@
         home-manager.enable = true;
         jujutsu = {
           enable = true;
-          package = inputs.nixpkgs-unstable.legacyPackages.${system}.jujutsu;
           settings = {
             user = {
               name = "Shun Ueda";
@@ -187,20 +182,12 @@
             orbstack
             sops
             nixd
-            # BRUH fix later im too lazy
-            ((import inputs.nixpkgs-steam {
-              config.allowUnfree = true;
-              inherit system;
-            }).steam
-            )
+            steam
+            jetbrains-mono
           ])
           ++ (with self.packages.${system}; [
             homerow
             ensure-jupyter-no-output
-          ])
-          ++ (with inputs.nixpkgs-unstable.legacyPackages.${system}; [
-            # Only build on unstable because of some ffmpeg-python issue
-            jetbrains-mono
           ]);
         file = {
           ".emacs.d" = {

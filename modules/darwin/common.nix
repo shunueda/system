@@ -17,7 +17,37 @@
       };
       nixpkgs = {
         config.allowUnfree = true;
-        overlays = [ ];
+        overlays = [
+          (
+            final: prev:
+            let
+              inherit (final.stdenv.hostPlatform) system;
+            in
+            {
+              # https://github.com/NixOS/nixpkgs/issues/507531
+              # Possible cause: https://github.com/NixOS/nixpkgs/issues/208951
+              direnv = prev.direnv.overrideAttrs (_: {
+                doCheck = false;
+              });
+
+              # Steam in nixpkgs doesn't support darwin
+              inherit
+                (import inputs.nixpkgs-steam {
+                  inherit system;
+                  config.allowUnfree = true;
+                })
+                steam
+                ;
+
+              inherit (inputs.nixpkgs-unstable.legacyPackages.${system})
+                # Majutsu requires version in unstable
+                jujutsu
+                # Broken in 25.11: https://github.com/NixOS/nixpkgs/issues/511265
+                jetbrains-mono
+                ;
+            }
+          )
+        ];
       };
       home-manager.useGlobalPkgs = true;
       home-manager.useUserPackages = true;
