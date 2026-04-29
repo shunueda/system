@@ -56,6 +56,7 @@
           historyFileSize = 1000000;
           historyFile = "${config.home.homeDirectory}/.sh_history";
         };
+        difftastic.enable = true;
         direnv = {
           enable = true;
           nix-direnv.enable = true;
@@ -129,10 +130,25 @@
               email = "me@shu.nu";
             };
             remotes.origin.auto-track-bookmarks = "*";
-            ui.merge-editor = "mergiraf";
+            ui = {
+              # TODO: can remove at 26.05 release
+              merge-editor = "mergiraf";
+              # TODO: can remove at 26.05 release
+              diff-formatter = [
+                (lib.getExe config.programs.difftastic.package)
+                "--color=always"
+                "--sort-paths"
+                "$left"
+                "$right"
+              ];
+            };
+            # TODO: can remove at 26.05 relase
             merge-tools = {
-              mergiraf = {
-                program = lib.getExe config.programs.mergiraf.package;
+              mergiraf.program = lib.getExe config.programs.mergiraf.package;
+            };
+            colors = {
+              "diff token" = {
+                underline = false;
               };
             };
           };
