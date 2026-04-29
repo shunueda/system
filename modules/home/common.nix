@@ -160,19 +160,17 @@
         };
         starship = {
           enable = true;
+          # TODO: jujutsu when they support it.
+          # https://github.com/starship/starship/issues/6076.
           settings = {
             add_newline = false;
-            format = "$git_branch:$directory $character ";
+            format = "$directory $character ";
             character = {
               format = "[\\$](white)";
             };
             directory = {
               format = "[$path]($style)";
               style = "bold blue";
-            };
-            git_branch = {
-              format = "[$branch]($style)";
-              style = "bold green";
             };
           };
         };
