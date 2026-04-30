@@ -254,3 +254,6 @@
 (global-unset-key (kbd "<down>"))
 (global-unset-key (kbd "<left>"))
 (global-unset-key (kbd "<right>"))
+
+;; TODO think about mapping
+(keymap-global-set "C-c d" 'majutsu-diff)

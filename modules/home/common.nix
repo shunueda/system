@@ -82,6 +82,7 @@
               treesit-grammars.with-all-grammars
               kotlin-ts-mode
               tuareg
+              paredit
               multiple-cursors
               undo-tree
               vertico
@@ -142,7 +143,7 @@
                 "$right"
               ];
             };
-            # TODO: can remove at 26.05 relase
+            # TODO: can remove at 26.05 release
             merge-tools = {
               mergiraf.program = lib.getExe config.programs.mergiraf.package;
             };
