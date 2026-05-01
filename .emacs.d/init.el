@@ -5,14 +5,11 @@
       ;; Don't show the startup message
       inhibit-startup-message t
 
-      ;; Instruct auto-save-mode to save to the current file, not a backup file
+      ;; Use super-save
       auto-save-default nil
 
       ;; No backup files
       make-backup-files nil
-
-      ;; Autosave every 1 sec
-      auto-save-visited-interval 1
 
       ;; Make it easy to cycle through previous items in the mark ring
       set-mark-command-repeat-pop t
@@ -54,11 +51,9 @@
 (display-time-mode 1)          ;; Display time in mode line / tab bar
 (column-number-mode 1)         ;; Show column number on mode line
 (tab-bar-history-mode 1)       ;; Remember previous tab window configurations
-(auto-save-visited-mode 1)     ;; Auto-save files at an interval
 (global-visual-line-mode 1)    ;; Visually wrap long lines in all buffers
 (global-auto-revert-mode 1)    ;; Refresh buffers with changed local files
 (global-display-line-numbers-mode t) ;; Display line numbers
-(auto-save-visited-mode 1) ;; Save to original file
 
 ;; Tabs to spaces
 (setq-default indent-tabs-mode nil
@@ -111,6 +106,12 @@
 (add-to-list 'auto-mode-alist '("\\.go\\'" . go-ts-mode))
 (add-to-list 'auto-mode-alist '("\\.kt\\'" . kotlin-ts-mode))
 (add-to-list 'auto-mode-alist '("\\.kts\\'" . kotlin-ts-mode))
+
+;; Super save
+(use-package super-save
+  :ensure t
+  :config
+  (super-save-mode +1))
 
 ;; Tuareg
 (use-package tuareg

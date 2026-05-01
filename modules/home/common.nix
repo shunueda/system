@@ -88,6 +88,7 @@
               undo-tree
               vertico
               zenburn-theme
+              super-save
               self.packages.${system}.majutsu
             ];
         };
