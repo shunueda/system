@@ -199,7 +199,7 @@
 
 (use-package fzf
   :bind
-  (("C-t" . fzf-git)
+  (("C-t" . fzf-git-files)
    ("C-r" . fzf-git-grep-fuzzy))
   :config
   (setq fzf/args "-x --color bw --print-query --margin=1,0 --no-hscroll"

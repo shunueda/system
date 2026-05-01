@@ -17,6 +17,7 @@
         inputs.nocommit.homeModules.default
         inputs.sops-nix.homeManagerModules.sops
         self.homeModules.ghq
+        # TODO: remove after 26.05 release
         self.homeModules.screen
       ];
       xdg.enable = true;
@@ -158,7 +159,6 @@
         nocommit.enable = true;
         screen = {
           enable = true;
-          screenrc = "";
         };
         ssh = {
           enable = true;
