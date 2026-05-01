@@ -1,4 +1,4 @@
-{ ... }:
+{ inputs, ... }:
 {
   perSystem =
     {
@@ -12,7 +12,7 @@
         inherit (inputs'.tools.packages) nix-flake-check-changed nix-grep-to-build;
       }
       // lib.packagesFromDirectoryRecursive {
-        callPackage = lib.callPackageWith (pkgs // pkgs.emacsPackages);
+        callPackage = lib.callPackageWith (pkgs // pkgs.emacsPackages // { inherit inputs; });
         directory = ../packages;
       };
     };
