@@ -5,56 +5,49 @@
       programs.qutebrowser = {
         enable = true;
         enableDefaultBindings = false;
-
         searchEngines = {
           DEFAULT = "https://duckduckgo.com/?q={}";
         };
-        
-        settings = {
-          editor.command = [
-            "emacsclient"
-            "-c"
-            "{file}"
-          ];
-          keyBindings = {
-            normal = {
-              "<Alt-x>" = "set-cmd-text :";
-              "<Ctrl-s>" = "set-cmd-text /";
-              "<Ctrl-r>" = "set-cmd-text ?";
-              "<Space>" = "hint";
-              "<Escape>" = "clear-keychain ;; search ;; fullscreen --leave";
-              "<Ctrl-g>" = "clear-keychain ;; search ;; fullscreen --leave";
-              "<Ctrl-n>" = "scroll down";
-              "<Ctrl-p>" = "scroll up";
-              "<Ctrl-v>" = "scroll-page 0 0.5";
-              "<Alt-v>" = "scroll-page 0 -0.5";
-              "n" = "tab-next";
-              "p" = "tab-prev";
-              "k" = "tab-close";
-              "<Alt-1>" = "tab-focus 1";
-              "<Alt-2>" = "tab-focus 2";
-              "<Alt-3>" = "tab-focus 3";
-              "<Alt-4>" = "tab-focus 4";
-              "<Alt-9>" = "tab-focus -1";
-              "<Ctrl-x>b" = "set-cmd-text -s :buffer";
-              "<Ctrl-x><Ctrl-f>" = "set-cmd-text -s :open -t";
-              "yy" = "yank";
-            };
-            command = {
-              "<Ctrl-a>" = "rl-beginning-of-line";
-              "<Ctrl-e>" = "rl-end-of-line";
-              "<Ctrl-k>" = "rl-kill-line";
-              "<Ctrl-y>" = "rl-yank";
-              "<Ctrl-n>" = "completion-item-focus next";
-              "<Ctrl-p>" = "completion-item-focus prev";
-              "<Ctrl-g>" = "mode-leave";
-              "<Return>" = "command-accept";
-            };
-            insert = {
-              "<Ctrl-g>" = "mode-leave";
-              "<Ctrl-e>" = "edit-text";
-            };
+        keyBindings = {
+          normal = {
+            "<Alt-x>" = "set-cmd-text :";
+            "<Ctrl-s>" = "set-cmd-text /";
+            "<Ctrl-r>" = "set-cmd-text ?";
+            "<Space>" = "hint";
+            "<Escape>" = "clear-keychain ;; search ;; fullscreen --leave";
+            "<Ctrl-g>" = "clear-keychain ;; search ;; fullscreen --leave";
+            "<Ctrl-n>" = "scroll down";
+            "<Ctrl-p>" = "scroll up";
+            "<Ctrl-v>" = "scroll-page 0 0.5";
+            "<Alt-v>" = "scroll-page 0 -0.5";
+            "n" = "tab-next";
+            "p" = "tab-prev";
+            "k" = "tab-close";
+            "<Alt-1>" = "tab-focus 1";
+            "<Alt-2>" = "tab-focus 2";
+            "<Alt-3>" = "tab-focus 3";
+            "<Alt-4>" = "tab-focus 4";
+            "<Alt-9>" = "tab-focus -1";
+            "<Ctrl-x>b" = "set-cmd-text -s :buffer";
+            "<Ctrl-x><Ctrl-f>" = "set-cmd-text -s :open -t";
+            "yy" = "yank";
           };
+          command = {
+            "<Ctrl-a>" = "rl-beginning-of-line";
+            "<Ctrl-e>" = "rl-end-of-line";
+            "<Ctrl-k>" = "rl-kill-line";
+            "<Ctrl-y>" = "rl-yank";
+            "<Ctrl-n>" = "completion-item-focus next";
+            "<Ctrl-p>" = "completion-item-focus prev";
+            "<Ctrl-g>" = "mode-leave";
+            "<Return>" = "command-accept";
+          };
+          insert = {
+            "<Ctrl-g>" = "mode-leave";
+            "<Ctrl-e>" = "edit-text";
+          };
+        };
+        settings = {
           colors =
             let
               # One Dark / Base16 Palette
