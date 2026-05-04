@@ -19,6 +19,7 @@
         self.homeModules.ghq
         # TODO: remove after 26.05 release
         self.homeModules.screen
+        self.homeModules.qutebrowser
       ];
       xdg.enable = true;
       programs = {
@@ -160,9 +161,6 @@
         mergiraf.enable = true;
         nocommit.enable = true;
         password-store.enable = true;
-        qutebrowser = {
-          enable = true;
-        };
         screen = {
           enable = true;
         };
