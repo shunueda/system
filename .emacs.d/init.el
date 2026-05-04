@@ -30,6 +30,7 @@
       native-comp-async-report-warnings-errors nil
 
       visible-bell t
+      markdown-enable-math t
 
       ;; Enable custom file
       custom-file (concat user-emacs-directory "custom.el"))
@@ -112,6 +113,14 @@
   :ensure t
   :config
   (super-save-mode +1))
+
+;; Markdown mode
+(use-package markdown-mode
+  :ensure t
+  :mode ("README\\.md\\'" . gfm-mode)
+  :init (setq markdown-command "multimarkdown")
+  :bind (:map markdown-mode-map
+         ("C-c C-e" . markdown-do)))
 
 ;; Tuareg
 (use-package tuareg

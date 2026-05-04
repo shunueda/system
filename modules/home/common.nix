@@ -89,6 +89,7 @@
               vertico
               zenburn-theme
               super-save
+              markdown-mode
               self.packages.${system}.majutsu
             ];
         };
@@ -158,6 +159,10 @@
         };
         mergiraf.enable = true;
         nocommit.enable = true;
+        password-store.enable = true;
+        qutebrowser = {
+          enable = true;
+        };
         screen = {
           enable = true;
         };

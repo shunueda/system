@@ -12,6 +12,14 @@
             "flakes"
           ];
           sandbox = false;
+          substituters = [
+            "https://nix-cache.oyasai.io"
+            "https://anterior-public.cachix.org"
+          ];
+          trusted-public-keys = [
+            "oyasaiserver:f0coAsRP8jLzDTOmVCY8hqQibMHtZcxjk60oVCQkjtU="
+            "anterior-public.cachix.org-1:uLNXTMrqtMCiIJ4lYu47MGrbVPpyploI6J2y5Yre9es="
+          ];
         };
         gc.automatic = true;
       };
