@@ -70,9 +70,7 @@
             epkgs: with epkgs; [
               avy
               corfu
-              (direnv.overrideAttrs (prev: {
-                src = inputs.emacs-direnv-async;
-              }))
+              direnv
               exec-path-from-shell
               fzf
               git-gutter
