@@ -108,7 +108,9 @@
             user = {
               name = "Shun Ueda";
               email = "me@shu.nu";
+              signingKey = "0CCE2D6849A8D4EF";
             };
+            commit.gpgSign = true;
             diff.algorithm = "histogram";
             rebase = {
               autosquash = true;
@@ -122,6 +124,12 @@
             };
             pull.rebase = true;
             push.autoSetupRemote = true;
+          };
+        };
+        gpg = {
+          enable = true;
+          scdaemonSettings = {
+            disable-ccid = true;
           };
         };
         home-manager.enable = true;
@@ -144,6 +152,11 @@
                 "$left"
                 "$right"
               ];
+            };
+            signing = {
+              sign-all = true;
+              backend = "gpg";
+              key = "0CCE2D6849A8D4EF";
             };
             # TODO: can remove at 26.05 release
             merge-tools = {
@@ -168,7 +181,7 @@
           matchBlocks = {
             "github.com" = {
               user = "git";
-              identityFile = config.sops.secrets.id_ed25519_github.path;
+              identitiesOnly = false;
             };
           };
         };
@@ -191,12 +204,19 @@
         zoxide.enable = true;
         # keep-sorted end
       };
+      services = {
+        gpg-agent = {
+          enable = true;
+          enableSshSupport = true;
+          pinentry.package = pkgs.pinentry_mac;
+          defaultCacheTtl = 600;
+          maxCacheTtl = 7200;
+        };
+      };
       fonts.fontconfig.enable = true;
       home = {
         packages =
           (with pkgs; [
-            age
-            gnupg
             maccy
             orbstack
             sops
@@ -219,16 +239,9 @@
         };
       };
       sops = {
-        age = {
-          keyFile = "${config.xdg.configHome}/sops/age/keys.txt";
-          sshKeyPaths = [ ];
-        };
         gnupg.sshKeyPaths = [ ];
         defaultSopsFile = ../../secrets/default.yaml;
-        secrets = {
-          id_ed25519_github = { };
-          id_ed25519_oyasai = { };
-        };
+        secrets = { };
       };
     };
 }

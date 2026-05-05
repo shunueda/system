@@ -1,7 +1,7 @@
 keys:
-  - &me age1uequ68u9me6ewrkdllseaepj2f263s4w4pv6hacpjk7fap3dsdqqen0g5h
+  - &yubikey 00B03D282370365FF673307A650D0441D17EF3E1
 creation_rules:
-  - path_regex: secrets.yaml
+  - path_regex: secrets/.*\.yaml$
     key_groups:
-      - age:
-          - *me
+      - pgp:
+          - *yubikey
