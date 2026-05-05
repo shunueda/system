@@ -154,10 +154,12 @@
               ];
             };
             signing = {
-              sign-all = true;
+              behavior = "drop";
               backend = "gpg";
               key = "0CCE2D6849A8D4EF";
             };
+            # Sign only on push
+            git.sign-on-push = true;
             # TODO: can remove at 26.05 release
             merge-tools = {
               mergiraf.program = lib.getExe config.programs.mergiraf.package;
