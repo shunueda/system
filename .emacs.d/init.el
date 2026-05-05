@@ -272,3 +272,6 @@
 
 (global-set-key (kbd "C-x p") 'previous-buffer)
 (global-set-key (kbd "C-x n") 'next-buffer)
+
+(global-set-key (kbd "C-x <right>") nil)
+(global-set-key (kbd "C-x <left>") nil)
