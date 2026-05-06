@@ -53,12 +53,6 @@
                 # Broken in 25.11: https://github.com/NixOS/nixpkgs/issues/511265
                 jetbrains-mono
                 ;
-
-              emacsPackages = prev.emacsPackages // {
-                direnv = prev.emacsPackages.direnv.overrideAttrs (prev: {
-                  src = inputs.emacs-direnv-async;
-                });
-              };
             }
           )
         ];

@@ -66,6 +66,11 @@
         direnv-instant.enable = true;
         emacs = {
           enable = true;
+          overrides = self: super: {
+            direnv = super.direnv.overrideAttrs (_: {
+              src = inputs.emacs-direnv-async;
+            });
+          };
           extraPackages =
             epkgs: with epkgs; [
               avy
