@@ -196,7 +196,8 @@
 
 ;; exec-path-from-shell
 (when (memq window-system '(mac ns x))
-  (exec-path-from-shell-initialize))
+  (exec-path-from-shell-initialize)
+  (exec-path-from-shell-copy-envs '("SSH_AUTH_SOCK")))
 
 (use-package direnv
   :ensure t
