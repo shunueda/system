@@ -113,9 +113,7 @@
             user = {
               name = "Shun Ueda";
               email = "me@shu.nu";
-              signingKey = "0CCE2D6849A8D4EF";
             };
-            commit.gpgSign = true;
             diff.algorithm = "histogram";
             rebase = {
               autosquash = true;
@@ -192,17 +190,19 @@
         };
         starship = {
           enable = true;
-          # TODO: jujutsu when they support it.
-          # https://github.com/starship/starship/issues/6076.
           settings = {
             add_newline = false;
-            format = "$directory $character ";
+            format = "$git_branch:$directory $character ";
             character = {
               format = "[\\$](white)";
             };
             directory = {
               format = "[$path]($style)";
               style = "bold blue";
+            };
+            git_branch = {
+              format = "[$branch]($style)";
+              style = "bold green";
             };
           };
         };
